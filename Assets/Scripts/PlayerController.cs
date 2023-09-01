@@ -40,7 +40,7 @@ public class PlayerController : Singleton<PlayerController>
 
     void SetLevel(int level)
     {
-        Invoke(nameof(SetPlayer), 1);
+        Invoke(nameof(SetPlayer), .5f);
     }
 
     void SetPlayer()
