@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7338604181969980038}
   m_RootOrder: 0
@@ -50,6 +51,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   movementSpeed: 900
+  touchDeadPercentage: 1
 --- !u!1 &7338604181969980039
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,6 +78,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.05, y: 0.13999999, z: 4.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7338604181232163367}
   m_Father: {fileID: 0}
