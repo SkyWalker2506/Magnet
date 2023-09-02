@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Linq;
 using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -15,7 +14,7 @@ public class LevelSelectorTool : EditorWindow
     {
         EditorGUILayout.BeginVertical();
         CreateElement("Open Boot Scene",0);
-        for (int i = 1; i <= SceneManager.sceneCountInBuildSettings; i++)
+        for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             CreateElement($"Level {i}",i);
         }
@@ -27,10 +26,18 @@ public class LevelSelectorTool : EditorWindow
         GUILayout.Label(sceneLabel);
         if (GUILayout.Button("Open"))
         {
+            if (SceneManager.GetActiveScene().isDirty)
+            {
+                EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+            }
             EditorCoroutineUtility.StartCoroutine(IEOpenScene(sceneIndex), this);
         }
         if (GUILayout.Button("Play"))
         {
+            if (SceneManager.GetActiveScene().isDirty)
+            {
+                EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+            }
             EditorCoroutineUtility.StartCoroutine(IEPlayScene(sceneIndex), this);
         }
         EditorGUILayout.EndHorizontal();
