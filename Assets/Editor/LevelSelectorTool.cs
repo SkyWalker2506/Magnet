@@ -14,7 +14,6 @@ public class LevelSelectorTool : EditorWindow
     private void OnGUI()
     {
         EditorGUILayout.BeginVertical();
-
         CreateElement("Open Boot Scene",0);
         for (int i = 1; i <= SceneManager.sceneCountInBuildSettings; i++)
         {
