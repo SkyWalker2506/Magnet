@@ -1,9 +1,10 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    [SerializeField]int levelToSet;
     [SerializeField] int maxLevel=15;
 
     public static int LevelCollectableAmount;
@@ -37,28 +38,59 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OpenNextLevel()
     {
-        GameManager.Instance.UnLoadLevel(CurrentLevel.ToString());
+        UnLoadLevel(CurrentLevel.ToString());
             CurrentLevel++;
         if (CurrentLevel >= maxLevel)
             CurrentLevel = 1;
-        GameManager.Instance.LoadLevel(CurrentLevel.ToString());
+        LoadLevel(CurrentLevel.ToString());
     }
 
     public void RestartLevel()
     {
-        GameManager.Instance.UnLoadLevel(CurrentLevel.ToString());
-        GameManager.Instance.LoadLevel(CurrentLevel.ToString());
+        UnLoadLevel(CurrentLevel.ToString());
+        LoadLevel(CurrentLevel.ToString());
     }
 
+    public void LoadLevel(string levelName)
+    {
+        var ao = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
+        if (ao == null)
+        {
+            Debug.LogError("[GameManager] Unable to load level " + levelName);
+            return;
+        }
+        OnLoadOperationComplete(ao);
+    }
+    public void UnLoadLevel(string levelName)
+    {
+        var ao = SceneManager.UnloadSceneAsync(levelName);
+        if (ao == null)
+        {
+            Debug.LogError("[GameManager] Unable to unload level " + levelName);
+            return;
+        }
+        OnUnloadOperationComplete(ao);
+    }
+    
+    void OnLoadOperationComplete(AsyncOperation ao)
+    {
+        Debug.Log("Load Complete.");
+        MagnetGameActionSystem.LevelStarted?.Invoke(LevelManager.CurrentLevel);
+    }
+    void OnUnloadOperationComplete(AsyncOperation ao)
+    {
+        Debug.Log("Unload Complete.");
+    }
 
     void SetLevelCollectableAmount()
     {
         LevelCollectableAmount = Metal.SceneMetals.Count;
     }
 
-    [ContextMenu("Set Level")]
-    void SetLevel()
+    [Button("Set Level")]
+    void SetLevel(int level)
     {
-        CurrentLevel = levelToSet;
+        CurrentLevel = level;
     }
+    
 }
