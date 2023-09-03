@@ -18,6 +18,7 @@ public class BlackHole : MonoBehaviour
         if (other.TryGetComponent(out Metal metal))
         {
             Vector3 targetPos = (transform.position+ Vector3.down*10);
+            other.enabled = false;
             metal.transform.DOMove(targetPos, 2).OnComplete(() =>
             {
                 if (isForCollecting)

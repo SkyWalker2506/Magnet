@@ -20,8 +20,6 @@ public class Metal : MonoBehaviour, ICollectable
 
     public Vector3 CurrentPosition { get { return transform.position; } }
 
-
-
     private void Awake()
     {
         UseMagnetism = true;
@@ -69,7 +67,6 @@ public class Metal : MonoBehaviour, ICollectable
     public void Collect()
     {
         GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<Collider>().enabled = false;
         MetalRB.isKinematic = true;
         OnCollected?.Invoke();
         UseMagnetism= false;
