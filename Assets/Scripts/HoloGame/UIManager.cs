@@ -1,20 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-    [SerializeField] Text levelText;
+    [SerializeField] TMP_Text levelText;
     public Image LevelProgressBar;
     public Animator LevelInOut;
     public GameObject GameUI;
     public GameObject CompletedUI;
     public GameObject FailedUI;
-
-    private void Start()
-    {
-    }
 
     void OnEnable()
     {
@@ -22,6 +17,7 @@ public class UIManager : Singleton<UIManager>
         MagnetGameActionSystem.ObjectCollected += SetProgressBar;
         MagnetGameActionSystem.OnLevelCompleted += LevelCompleted;
         MagnetGameActionSystem.OnLevelFailed += LevelFailed;
+        SetProgressBar(0);
     }
 
     void OnDisable()

@@ -4903,7 +4903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1216932897858985015
 Transform:
   m_ObjectHideFlags: 0
@@ -14617,7 +14617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6449096478516882085
 Transform:
   m_ObjectHideFlags: 0
@@ -19532,7 +19532,7 @@ Transform:
   - {fileID: 2238714137295028695}
   - {fileID: 3496237873343538153}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &3164418269668545968
 ParticleSystem:
@@ -29290,7 +29290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6149211821708783000
 Transform:
   m_ObjectHideFlags: 0
