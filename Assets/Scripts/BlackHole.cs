@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class BlackHole : MonoBehaviour
@@ -11,22 +12,25 @@ public class BlackHole : MonoBehaviour
     public MetalType Type = MetalType.Black;
     [SerializeField]
     bool isForCollecting =true;
-    GameObject collectedObject;
+    
     private void OnTriggerEnter(Collider other)
     {
-        var metal = other.GetComponent<Metal>();
-        if (metal)
+        if (other.TryGetComponent(out Metal metal))
         {
-            if(dropObjects.Contains(other.gameObject))
-              metal.UseMagnetism= false;
-          
-            metal.MetalRB.constraints = RigidbodyConstraints.None;
-            var direction = (other.transform.position- Vector3.up * 10).normalized;
-            metal.MetalRB.velocity = direction * 1;
+            Vector3 targetPos = (transform.position+ Vector3.down*10);
+            metal.transform.DOMove(targetPos, 2).OnComplete(() =>
+            {
+                if (isForCollecting)
+                {
+                    if (other.TryGetComponent(out ICollectable collectable))
+                    {
+                        collectable.Collect();
+                    }
+                }
+            });
             dropObjects.Add(other.gameObject);
 
                 other.isTrigger = true;
-            collectedObject = other.gameObject;
             if (Type == metal.Type && isForCollecting)
             {
                 MagnetGameActionSystem.ObjectCollected?.Invoke(dropObjects.Count);
@@ -38,28 +42,13 @@ public class BlackHole : MonoBehaviour
                 AudioManager.PlayDropToLavaClip();
 
             }
-                //Invoke("DeactivateCollected",.12f);
         }
-    }
-
-    void DeactivateCollected(GameObject go)
-    {
-        go.GetComponent<MeshRenderer>().enabled = false;
-        go.GetComponent<Collider>().enabled = false;
     }
 
     private void OnTriggerExit(Collider other)
     {
         if(dropObjects.Contains(other.gameObject))
         {
-            if (isForCollecting)
-            {
-                DeactivateCollected(other.gameObject);
-            }
-                //other.transform.position = transform.position + Vector3.down*2;
-            //other.attachedRigidbody.velocity = Vector3.zero;
-            //other.attachedRigidbody.useGravity = true;
-            //other.isTrigger = false;
 
         }
     }

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 [RequireComponent(typeof(Rigidbody))]
-public class Metal : MonoBehaviour
+public class Metal : MonoBehaviour, ICollectable
 {
     public MetalType Type = MetalType.Black;
 
@@ -17,6 +16,8 @@ public class Metal : MonoBehaviour
     public static List<Metal> SceneMetals = new List<Metal>();
 
     public Rigidbody MetalRB;
+    public Action OnCollected { get; }
+
     public Vector3 CurrentPosition { get { return transform.position; } }
 
 
@@ -64,9 +65,18 @@ public class Metal : MonoBehaviour
             SceneMetals.Remove(this);
 
     }
-
-
+    
+    public void Collect()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+        MetalRB.isKinematic = true;
+        OnCollected?.Invoke();
+        UseMagnetism= false;
+        //enabled = false;
+    }
 }
+
 public enum MetalType
 {
     Black,

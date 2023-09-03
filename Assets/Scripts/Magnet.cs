@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,10 +6,10 @@ using UnityEngine;
 public class Magnet : MonoBehaviour
 {
     public Polarization PolarizationValue;
-    [Range(10,2000)]
-    public float MagneticCharge=1;//Manyetik güç
+    [Range(10,2500)]
+    public float MagneticCharge=1;//Manyetik gï¿½ï¿½
   
-    public static float Permeability = 1;// Ortamýn Geçirgenliði
+    public static float Permeability = 1;// Ortamï¿½n Geï¿½irgenliï¿½i
 
     public static List<Magnet> SceneMagnets=new List<Magnet>();
     
@@ -35,7 +33,7 @@ public class Magnet : MonoBehaviour
     private void OnEnable()
     {
         if (!SceneMagnets.Contains(this))
-        SceneMagnets.Add(this);
+           SceneMagnets.Add(this);
       
     }
 
@@ -59,9 +57,6 @@ public class Magnet : MonoBehaviour
             player.SetParticleSize(highestDistance);
         }
     }
-
-
-  
 
     void ApplyMagneticForceToMagnet(Magnet otherMagnet)
     {

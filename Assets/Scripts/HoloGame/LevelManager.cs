@@ -40,7 +40,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         UnLoadLevel(CurrentLevel.ToString());
             CurrentLevel++;
-        if (CurrentLevel >= maxLevel)
+        if (CurrentLevel > maxLevel)
             CurrentLevel = 1;
         LoadLevel(CurrentLevel.ToString());
     }
