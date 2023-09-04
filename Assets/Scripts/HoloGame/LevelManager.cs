@@ -1,5 +1,4 @@
-﻿using System;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +6,7 @@ public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] int maxLevel=15;
 
-    public static float LevelPassTime=4;
+    public static readonly float LevelPassTime = 3.5f;
     public static int CurrentLevel
     {
         get { return PlayerPrefs.GetInt("LastPassedLevel", 1); }
