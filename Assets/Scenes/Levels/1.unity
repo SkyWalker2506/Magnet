@@ -716,7 +716,7 @@ PrefabInstance:
     - target: {fileID: 1105024024403439245, guid: fd88dc95486ba974388efa20a80d67ea,
         type: 3}
       propertyPath: m_Name
-      value: BlackHole (1)
+      value: BlackHole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1419,11 +1419,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2504080871356411396, guid: cd169d9da2e2e29448c65ceace0807f1,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 6b5e73cffc4cf8c4c8ef374df4e35382, type: 2}
     - target: {fileID: 2504080871356411400, guid: cd169d9da2e2e29448c65ceace0807f1,
         type: 3}
       propertyPath: m_Name

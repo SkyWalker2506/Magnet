@@ -44,11 +44,8 @@ public class Magnet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (DebugManager.Instance.IsMagnetismOn.isOn)
-        {
             SceneMagnets.ForEach(ApplyMagneticForceToMagnet);
             Metal.SceneMetals.ForEach(ApplyMagneticForceToMetal);
-        }
     }
 
     void ApplyMagneticForceToMagnet(Magnet otherMagnet)

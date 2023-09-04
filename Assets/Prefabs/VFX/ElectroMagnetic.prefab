@@ -34,7 +34,7 @@ Transform:
   - {fileID: 7884366843381552011}
   - {fileID: 4242471556924451323}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4430256306815614814
 GameObject:
@@ -60,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4430256306815614814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.64, y: 0, z: 0.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -91,7 +91,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4742134791753855583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.648, y: -0.631, z: 0}
+  m_LocalPosition: {x: 1.66, y: -0.631, z: -0.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -192,21 +192,21 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 0, y: 0, z: 0}
+      - m_Value: {x: 0, y: 1, z: 0}
         m_Name: Pos 1
         m_Overridden: 1
-      - m_Value: {x: 0, y: 0, z: 0}
+      - m_Value: {x: 0.64, y: 1, z: 0.45}
         m_Name: Pos 2
         m_Overridden: 1
-      - m_Value: {x: 1.648, y: -0.631, z: 0}
+      - m_Value: {x: 1.66, y: 0.36900002, z: -0.44}
         m_Name: Pos 3
         m_Overridden: 1
-      - m_Value: {x: 2.887, y: 0, z: 0}
+      - m_Value: {x: 2.887, y: 1, z: 0}
         m_Name: Pos 4
         m_Overridden: 1
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0.053469665, y: 0.5334548, z: 2.2671142, w: 1}
+      - m_Value: {x: 0.026734833, y: 0.2667274, z: 1.1335571, w: 1}
         m_Name: Color
         m_Overridden: 1
     m_Uint:
