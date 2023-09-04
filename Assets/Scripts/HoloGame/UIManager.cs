@@ -8,7 +8,6 @@ public class UIManager : Singleton<UIManager>
     public Image LevelProgressBar;
     public Animator LevelInOut;
     public GameObject GameUI;
-    public GameObject CompletedUI;
     public GameObject FailedUI;
 
     void OnEnable()
@@ -32,7 +31,6 @@ public class UIManager : Singleton<UIManager>
     {
         LevelInOut.SetTrigger("LevelIn");
         GameUI.SetActive(true);
-        CompletedUI.SetActive(false);
         FailedUI.SetActive(false);
         levelText.text = level.ToString();
         SetProgressBar(0);
@@ -46,13 +44,11 @@ public class UIManager : Singleton<UIManager>
     void LevelCompleted()
     {
         GameUI.SetActive(false);
-        CompletedUI.SetActive(true);
         LevelInOut.SetTrigger("LevelOut");
     }
     public void RestartLevel()
     {
         LevelManager.Instance.RestartLevel();
-      //  SetLevel(LevelManager.CurrentLevel);
     }
 
     void LevelFailed()
