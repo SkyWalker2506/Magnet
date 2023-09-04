@@ -38,7 +38,7 @@ public class UIManager : Singleton<UIManager>
 
     private void SetProgressBar(int collected)
     {
-        LevelProgressBar.fillAmount = (float)collected / Metal.SceneMetals.Count;
+        LevelProgressBar.fillAmount = (float)collected / MagnetismManager.SceneMetals.Count;
     }
 
     void LevelCompleted()

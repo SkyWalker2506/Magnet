@@ -18,7 +18,7 @@ public class MagnetismManager : MonoBehaviour
 
             foreach (Metal metal in SceneMetals)
             {
-                ApplyMagneticForceToMetal(SceneMagnets[i],metal)
+                ApplyMagneticForceToMetal(SceneMagnets[i], metal);
             }
         }
     }

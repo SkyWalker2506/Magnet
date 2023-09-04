@@ -174,5 +174,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   metalHitClip: {fileID: 8300000, guid: 526eb1e0c49bb214eb7e190681569476, type: 3}
-  dropToHoleClip: {fileID: 8300000, guid: cabda995e04d91944a99eee647843c9a, type: 3}
+  dropToHoleClip: {fileID: 8300000, guid: c6a5cd186c70e884ba28164368938dae, type: 3}
   dropToLavaClip: {fileID: 8300000, guid: 3fec1536a6749b9438882e8ec2cbead3, type: 3}
