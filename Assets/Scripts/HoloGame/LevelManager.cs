@@ -7,7 +7,6 @@ public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] int maxLevel=15;
 
-    public static int LevelCollectableAmount;
     public static float LevelPassTime=4;
     public static int CurrentLevel
     {
@@ -18,22 +17,11 @@ public class LevelManager : Singleton<LevelManager>
 
     private void OnEnable()
     {
-        MagnetGameActionSystem.ObjectCollected += CheckIfLevelEnded;
-        MagnetGameActionSystem.LevelStarted += (l) => { SetLevelCollectableAmount(); };
+        MagnetGameActionSystem.OnLevelCompleted += ()=>Invoke("OpenNextLevel", LevelPassTime);
     }
     private void OnDisable()
     {
-        MagnetGameActionSystem.ObjectCollected -= CheckIfLevelEnded;
-        MagnetGameActionSystem.LevelStarted -= (l) => { SetLevelCollectableAmount(); };
-    }
-
-    void CheckIfLevelEnded(int collected)
-    {
-        if (collected == Metal.SceneMetals.Count)
-        {
-            MagnetGameActionSystem.OnLevelCompleted?.Invoke();
-            Invoke("OpenNextLevel", LevelPassTime);
-        }
+        MagnetGameActionSystem.OnLevelCompleted -=  ()=>Invoke("OpenNextLevel", LevelPassTime);
     }
 
     public void OpenNextLevel()
@@ -80,11 +68,6 @@ public class LevelManager : Singleton<LevelManager>
     void OnUnloadOperationComplete(AsyncOperation ao)
     {
         Debug.Log("Unload Complete.");
-    }
-
-    void SetLevelCollectableAmount()
-    {
-        LevelCollectableAmount = Metal.SceneMetals.Count;
     }
 
     [Button("Set Level")]

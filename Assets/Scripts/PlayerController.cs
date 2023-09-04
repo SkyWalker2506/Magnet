@@ -80,7 +80,6 @@ public class PlayerController : Singleton<PlayerController>
         Vector2 moveVector = 100*((Vector2)camera.ScreenToViewportPoint(Input.mousePosition) - touchStartPos);
         if (moveVector.magnitude < touchDeadPercentage)
         {
-            Debug.Log(moveVector.magnitude);
             return;
         }
 

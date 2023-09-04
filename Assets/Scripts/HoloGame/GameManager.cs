@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     List<GameObject> systemPrefabs;
     List<GameObject> instancedSystemPrefabs;
+    
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -16,6 +17,15 @@ public class GameManager : Singleton<GameManager>
         instancedSystemPrefabs = new List<GameObject>();
         InstantiatingSystemPrefabs();
         LevelManager.Instance.LoadLevel((LevelManager.CurrentLevel).ToString());
+    }
+    
+    private void OnEnable()
+    {
+        MagnetGameActionSystem.ObjectCollected += CheckIfLevelEnded;
+    }
+    private void OnDisable()
+    {
+        MagnetGameActionSystem.ObjectCollected -= CheckIfLevelEnded;
     }
 
     void InstantiatingSystemPrefabs ()
@@ -36,6 +46,14 @@ public class GameManager : Singleton<GameManager>
         instancedSystemPrefabs.Clear();
     }
 
+    void CheckIfLevelEnded(int collected)
+    {
+        if (collected == Metal.SceneMetals.Count)
+        {
+            MagnetGameActionSystem.OnLevelCompleted?.Invoke();
+        }
+    }
+    
     
 
 }
