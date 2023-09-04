@@ -19,8 +19,6 @@ public class Magnet : MonoBehaviour
 
     Player player;
  
-    float highestDistance = 0;
-
     public Vector3 CurrentPosition { get { return transform.position; } }
 
    
@@ -46,15 +44,10 @@ public class Magnet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        highestDistance = 0;
         if (DebugManager.Instance.IsMagnetismOn.isOn)
         {
             SceneMagnets.ForEach(ApplyMagneticForceToMagnet);
             Metal.SceneMetals.ForEach(ApplyMagneticForceToMetal);
-        }
-        if (player)
-        {
-            player.SetParticleSize(highestDistance);
         }
     }
 
@@ -69,10 +62,6 @@ public class Magnet : MonoBehaviour
         var distance = heading.magnitude;
         if (distance > maxDistance)
             return;
-        if (player)
-        {
-            highestDistance = Mathf.Max(highestDistance, distance);
-        }
         var direction = heading / distance;
         var forceToApply= Permeability* MagneticCharge*otherMagnet.MagneticCharge/(4*Mathf.PI*Mathf.Pow(distance,2));
         otherMagnet.MagnetRB.AddForce(direction * polarzationMultiplier *forceToApply);
@@ -89,10 +78,6 @@ public class Magnet : MonoBehaviour
         var distance = heading.magnitude;//15
         if (distance > maxDistance)
             return;
-        if (player)
-        {
-            highestDistance = Mathf.Max(highestDistance, distance);
-        }
         var direction = heading / distance;//1,0,0
         var forceToApply = Permeability * MagneticCharge * metal.MagneticCharge / (4 * Mathf.PI * Mathf.Pow(distance, 2));
         metal.MetalRB.AddForce( direction * forceToApply );
