@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -14,7 +12,6 @@ public class Metal : MonoBehaviour, ICollectable
     public bool UseMagnetism;
     public float Permeability = 1;//Geçirgenlik
 
-    public static List<Metal> SceneMetals = new List<Metal>();
 
     public Rigidbody MetalRB;
     public bool IsMagnetized;
@@ -30,10 +27,15 @@ public class Metal : MonoBehaviour, ICollectable
 
     private void OnEnable()
     {
-        if (!SceneMetals.Contains(this))
-            SceneMetals.Add(this);
+        if (!MagnetismManager.SceneMetals.Contains(this))
+            MagnetismManager.SceneMetals.Add(this);
     }
     
+    private void OnDisable()
+    {
+        if (MagnetismManager.SceneMetals.Contains(this))
+            MagnetismManager.SceneMetals.Remove(this);
+    }
     
     private void OnCollisionEnter(Collision collision)
     {
@@ -59,12 +61,7 @@ public class Metal : MonoBehaviour, ICollectable
         UseMagnetism = true;
 
     }
-    private void OnDisable()
-    {
-        if (SceneMetals.Contains(this))
-            SceneMetals.Remove(this);
 
-    }
     
     public void Collect()
     {
@@ -75,9 +72,9 @@ public class Metal : MonoBehaviour, ICollectable
         //enabled = false;
     }
 
-    public void ApplyMagneticForce(Vector3 direction, float forceToApply)
+    public void ApplyMagneticForce(Vector3 forceToApply)
     {
-        MetalRB.AddForce(direction * forceToApply);
+        MetalRB.AddForce(forceToApply);
         IsMagnetized = true;
     }
 }
