@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5217940918599811349}
+  - component: {fileID: 8112266218315492850}
   m_Layer: 0
   m_Name: ElectroMagnetic
   m_TagString: Untagged
@@ -36,6 +37,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8112266218315492850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102069810473317090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fccef49b0f6744d0f88a30a3915de752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfx: {fileID: 8276585339212247368}
+  pos1: {fileID: 8046268899065657982}
+  pos2: {fileID: 5192591149866884694}
+  pos3: {fileID: 7884366843381552011}
+  pos4: {fileID: 4242471556924451323}
 --- !u!1 &4430256306815614814
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +224,7 @@ VisualEffect:
         m_Overridden: 1
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0.026734833, y: 0.2667274, z: 1.1335571, w: 1}
+      - m_Value: {x: 0.09993147, y: 0.9969937, z: 4.237095, w: 1}
         m_Name: Color
         m_Overridden: 1
     m_Uint:

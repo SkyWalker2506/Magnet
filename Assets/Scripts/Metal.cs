@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -16,6 +17,7 @@ public class Metal : MonoBehaviour, ICollectable
     public static List<Metal> SceneMetals = new List<Metal>();
 
     public Rigidbody MetalRB;
+    public bool IsMagnetized;
     public Action OnCollected { get; }
 
     public Vector3 CurrentPosition { get { return transform.position; } }
@@ -31,8 +33,8 @@ public class Metal : MonoBehaviour, ICollectable
         if (!SceneMetals.Contains(this))
             SceneMetals.Add(this);
     }
-
-
+    
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("Player"))
@@ -71,6 +73,12 @@ public class Metal : MonoBehaviour, ICollectable
         OnCollected?.Invoke();
         UseMagnetism= false;
         //enabled = false;
+    }
+
+    public void ApplyMagneticForce(Vector3 direction, float forceToApply)
+    {
+        MetalRB.AddForce(direction * forceToApply);
+        IsMagnetized = true;
     }
 }
 

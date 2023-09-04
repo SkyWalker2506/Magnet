@@ -71,15 +71,17 @@ public class Magnet : MonoBehaviour
         if (!metal.UseMagnetism)
             return;
         var heading = CurrentPosition - metal.CurrentPosition;//(15,0,0)  10,10,10   5,5,5
-     //   var heading = CurrentPosition+ preHeading*5 / preHeading.magnitude - metal.CurrentPosition ;
         var distance = heading.magnitude;//15
         if (distance > maxDistance)
+        {
+            metal.IsMagnetized = false;
             return;
-        var direction = heading / distance;//1,0,0
+        }
+        var direction = heading / distance;
         var forceToApply = Permeability * MagneticCharge * metal.MagneticCharge / (4 * Mathf.PI * Mathf.Pow(distance, 2));
-        metal.MetalRB.AddForce( direction * forceToApply );
-       // MagnetRB.AddForce( -direction * forceToApply);
+        metal.ApplyMagneticForce(direction, forceToApply);
     }
+
 }
 
 public enum Polarization
