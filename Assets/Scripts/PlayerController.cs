@@ -63,7 +63,6 @@ public class PlayerController : Singleton<PlayerController>
         {
             isPlayerMovable = true;
             touchStartPos =  camera.ScreenToViewportPoint(Input.mousePosition);
-            Debug.Log(touchStartPos);
         }
         
         if (Input.GetMouseButtonUp(0))

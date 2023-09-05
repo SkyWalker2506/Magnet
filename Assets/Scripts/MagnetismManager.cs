@@ -50,7 +50,6 @@ public class MagnetismManager : MonoBehaviour
                 {
                     vfx=Instantiate(vfxPrefab);
                     vfx.SetTargets(magnet1.transform,magnet2.transform);
-                    vfx.SetActive(true);
                     vfxDictionary.Add(GetKey(magnet1.gameObject,magnet2.gameObject),vfx);
                 }
             }   
@@ -59,7 +58,6 @@ public class MagnetismManager : MonoBehaviour
             {
                     vfx=Instantiate(vfxPrefab);
                     vfx.SetTargets(magnet1.transform, metal.transform);
-                    vfx.SetActive(true);
                     vfxDictionary.Add(GetKey(magnet1.gameObject,metal.gameObject),vfx);
             }   
         }
