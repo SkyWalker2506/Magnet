@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2504080871356411398}
   - component: {fileID: 2504080871356411401}
   - component: {fileID: 2504080871356411395}
-  - component: {fileID: 5188240483074522372}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -151,7 +150,7 @@ MonoBehaviour:
   PolarizationValue: 1
   MagneticCharge: 2200
   MagnetRB: {fileID: 0}
-  maxDistance: 5.5
+  MaxDistance: 5.5
 --- !u!114 &2504080871356411395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,17 +161,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d683131ca5a0fc14898b5a71825c6a18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5188240483074522372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2504080871356411400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0eb7f2e55a1745f0b4818b536c3c5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -17,7 +17,6 @@ public class PlayerController : Singleton<PlayerController>
     Rigidbody playerRB;//hareket ettirilmek istenen magnetin rigidbody si
     Vector3 screenToFloorPosition;
     bool isPlayerMoveable;
-    Plane floorPlane = new Plane(Vector3.up, Vector3.zero);
     private Vector2 touchStartPos;
     
     
@@ -49,7 +48,7 @@ public class PlayerController : Singleton<PlayerController>
         playerRB = player.GetComponent<Rigidbody>();
         isPlayerMoveable = true;
     }
-    void FixedUpdate()
+    void Update()
     {
         if (!player) return;
 
@@ -85,7 +84,7 @@ public class PlayerController : Singleton<PlayerController>
 
         Vector3 direction = new Vector3(-moveVector.normalized.y,0,moveVector.normalized.x);
 
-        playerRB.velocity = direction * Time.fixedDeltaTime * movementSpeed;
+        playerRB.velocity = direction * Time.deltaTime * movementSpeed;
     }
 
 }
