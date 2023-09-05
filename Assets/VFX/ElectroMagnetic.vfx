@@ -1596,13 +1596,6 @@ MonoBehaviour:
     position: {x: 208.5, y: 565}
     expandedSlots: []
     expanded: 0
-  - m_Id: 1
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661614690}
-      inputSlot: {fileID: 8926484042661615021}
-    position: {x: 2155.4968, y: 1033.7762}
-    expandedSlots: []
-    expanded: 0
 --- !u!114 &8926484042661614690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,7 +1634,6 @@ MonoBehaviour:
   m_Direction: 1
   m_LinkedSlots:
   - {fileID: 8926484042661614634}
-  - {fileID: 8926484042661615021}
 --- !u!114 &8926484042661614691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2150,6 +2142,13 @@ MonoBehaviour:
     position: {x: 247, y: 714.5}
     expandedSlots: []
     expanded: 0
+  - m_Id: 1
+    linkedSlots:
+    - outputSlot: {fileID: 8926484042661614710}
+      inputSlot: {fileID: 8926484042661615021}
+    position: {x: 2037, y: 1096}
+    expandedSlots: []
+    expanded: 0
 --- !u!114 &8926484042661614710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2188,6 +2187,7 @@ MonoBehaviour:
   m_Direction: 1
   m_LinkedSlots:
   - {fileID: 8926484042661614649}
+  - {fileID: 8926484042661615021}
 --- !u!114 &8926484042661614711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6001,7 +6001,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 50
+      m_SerializableObject: 20
     m_Space: 2147483647
   m_Property:
     name: Rate
@@ -6408,7 +6408,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614997}
   - {fileID: 8926484042661614999}
   dataType: 0
-  capacity: 1000
+  capacity: 200
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
@@ -7103,7 +7103,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
   m_LinkedSlots:
-  - {fileID: 8926484042661614690}
+  - {fileID: 8926484042661614710}
 --- !u!114 &8926484042661615022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8396,7 +8396,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 5
+      m_SerializableObject: 3
     m_Space: 2147483647
   m_Property:
     name: b

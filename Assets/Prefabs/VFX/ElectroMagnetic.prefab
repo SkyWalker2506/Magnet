@@ -203,8 +203,17 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 0.23
+      - m_Value: 0.5
         m_Name: Thickness
+        m_Overridden: 1
+      - m_Value: 0.4
+        m_Name: NoisePower
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: NoiseFrequency
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: NoiseSpeed
         m_Overridden: 1
     m_Vector2f:
       m_Array: []
@@ -224,7 +233,7 @@ VisualEffect:
         m_Overridden: 1
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0.09993147, y: 0.9969937, z: 4.237095, w: 1}
+      - m_Value: {x: 0.79945177, y: 7.97595, z: 33.89676, w: 1}
         m_Name: Color
         m_Overridden: 1
     m_Uint:

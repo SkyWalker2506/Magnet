@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MagnetVFX : MonoBehaviour
@@ -8,23 +9,34 @@ public class MagnetVFX : MonoBehaviour
     [SerializeField] private Transform pos3;
     [SerializeField] private Transform pos4;
 
-    private Metal targetMetal;
-    
-    public void SetTarget(Metal target)
+    private void Awake()
     {
-        targetMetal = target;
-        vfx.SetActive(true);
+        SetActive(false);
     }
+
+    public void SetTargets(Transform target1, Transform target2)
+    {
+        pos1.parent = target1;
+        pos1.localPosition = Vector3.zero;
+        pos4.parent = target2;
+        pos4.localPosition = Vector3.zero;
+    }
+    
+    public void SetActive(bool isActive)
+    {
+        vfx.SetActive(isActive);
+    }
+
 
     private void Update()
     {
-        if (!(targetMetal && targetMetal.enabled&&targetMetal.IsMagnetized))
+        if (!vfx.activeSelf)
         {
-            vfx.SetActive(false);
             return;
         }
 
-        pos1.position = Player.CurrentPlayer.transform.position;
-        pos4.position = targetMetal.transform.position;
+        pos2.position = Vector3.Lerp(pos1.position, pos4.position, .33f)+Vector3.down+Vector3.right;
+        pos3.position = Vector3.Lerp(pos1.position, pos4.position, .66f)+Vector3.up*3+Vector3.left;
+
     }
 }

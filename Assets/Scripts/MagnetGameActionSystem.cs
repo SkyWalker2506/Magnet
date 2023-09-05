@@ -9,4 +9,6 @@ public class MagnetGameActionSystem
     public static Action<int> LevelStarted;
     public static Action OnLevelFailed;
     public static Action<int> ObjectCollected;
+    public static Action<Metal> OnMetalCollected;
+
 }

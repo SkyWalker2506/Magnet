@@ -1,6 +1,4 @@
 ﻿using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +9,7 @@ public class ComboController : MonoBehaviour
     int combo;
     float lastScoredTime;
     [SerializeField]
-    [Range(0.1f, 1)]
+    [Range(0.1f, 5)]
     float scoreInterval;
 
     private void Awake()

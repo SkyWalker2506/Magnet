@@ -69,6 +69,7 @@ public class Metal : MonoBehaviour, ICollectable
         MetalRB.isKinematic = true;
         OnCollected?.Invoke();
         UseMagnetism= false;
+        MagnetGameActionSystem.OnMetalCollected?.Invoke(this);
         //enabled = false;
     }
 
