@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 public class MagnetismManager : MonoBehaviour
 {
@@ -33,7 +34,6 @@ public class MagnetismManager : MonoBehaviour
             DestroyVfx(key);
         }
     }
-
     
     string GetKey(GameObject go1, GameObject go2) => $"{go1.GetInstanceID()}{go2.GetInstanceID()}";
 
@@ -99,6 +99,7 @@ public class MagnetismManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        Profiler.BeginSample("Magnetism Logic");
         for (int i = 0; i < SceneMagnets.Count; i++)
         {
             for (int j = i+1; j < SceneMagnets.Count; j++)
@@ -111,6 +112,7 @@ public class MagnetismManager : MonoBehaviour
                 ApplyMagneticForceToMetal(SceneMagnets[i], metal);
             }
         }
+        Profiler.EndSample();
     }
     
     void ApplyMagneticForceToMagnet(Magnet magnet1, Magnet magnet2)

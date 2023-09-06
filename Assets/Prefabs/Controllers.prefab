@@ -50,8 +50,8 @@ MonoBehaviour:
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 2048
-  movementSpeed: 1200
-  touchDeadPercentage: 1
+  movementSpeed: 700
+  touchDeadPercentage: 0
 --- !u!1 &7338604181969980039
 GameObject:
   m_ObjectHideFlags: 0

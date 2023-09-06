@@ -48,6 +48,7 @@ public class PlayerController : Singleton<PlayerController>
         playerRB = player.GetComponent<Rigidbody>();
         isPlayerMoveable = true;
     }
+    
     void Update()
     {
         if (!player) return;
@@ -81,10 +82,9 @@ public class PlayerController : Singleton<PlayerController>
             return;
         }
 
-
         Vector3 direction = new Vector3(-moveVector.normalized.y,0,moveVector.normalized.x);
 
-        playerRB.velocity = direction * Time.deltaTime * movementSpeed;
+        playerRB.velocity = direction * (Time.deltaTime * movementSpeed);
     }
 
 }

@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PolarizationValue: 1
-  MagneticCharge: 2200
+  MagneticCharge: 2000
   MagnetRB: {fileID: 0}
   MaxDistance: 5.5
 --- !u!114 &2504080871356411395
