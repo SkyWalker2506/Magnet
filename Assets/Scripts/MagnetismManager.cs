@@ -1,5 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Timers;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Profiling;
 
@@ -13,7 +15,7 @@ public class MagnetismManager : MonoBehaviour
 
     private void OnEnable()
     {
-        MagnetGameActionSystem.LevelStarted += (x) => StartCoroutine(WaitAndSetVFXs());
+        MagnetGameActionSystem.LevelStarted += (x) =>WaitAndSetVFXs();
         MagnetGameActionSystem.OnLevelCompleted += DestroyVFXs;
         MagnetGameActionSystem.OnLevelFailed += DestroyVFXs;
         MagnetGameActionSystem.OnMetalCollected += OnMetalCollected;
@@ -21,7 +23,7 @@ public class MagnetismManager : MonoBehaviour
     
     private void OnDisable()
     {
-        MagnetGameActionSystem.LevelStarted -= (x) => StartCoroutine(WaitAndSetVFXs());
+        MagnetGameActionSystem.LevelStarted -= (x) =>WaitAndSetVFXs();
         MagnetGameActionSystem.OnLevelCompleted -= DestroyVFXs;
         MagnetGameActionSystem.OnLevelFailed -= DestroyVFXs;
         MagnetGameActionSystem.OnMetalCollected -= OnMetalCollected;
@@ -37,14 +39,14 @@ public class MagnetismManager : MonoBehaviour
     
     string GetKey(GameObject go1, GameObject go2) => $"{go1.GetInstanceID()}{go2.GetInstanceID()}";
 
-    private IEnumerator WaitAndSetVFXs()
+    private async void WaitAndSetVFXs()
     {
-        yield return new WaitForSeconds(1);
+        await UniTask.Delay(1000);
         vfxDictionary = new Dictionary<string, MagnetVFX>();
         MagnetVFX vfx;
-        foreach (var magnet1 in SceneMagnets)
+        foreach (Magnet magnet1 in SceneMagnets)
         {
-            foreach (var magnet2 in SceneMagnets)
+            foreach (Magnet magnet2 in SceneMagnets)
             {
                 if (magnet1 != magnet2)
                 {
@@ -54,14 +56,15 @@ public class MagnetismManager : MonoBehaviour
                 }
             }   
             
-            foreach (var metal in SceneMetals)
+            foreach (Metal metal in SceneMetals)
             {
-                    vfx=Instantiate(vfxPrefab);
-                    vfx.SetTargets(magnet1.transform, metal.transform);
-                    vfxDictionary.Add(GetKey(magnet1.gameObject,metal.gameObject),vfx);
+                vfx=Instantiate(vfxPrefab);
+                vfx.SetTargets(magnet1.transform, metal.transform);
+                vfxDictionary.Add(GetKey(magnet1.gameObject,metal.gameObject),vfx);
             }   
         }
     }
+
 
     
     private void OnMetalCollected(Metal metal)
@@ -125,7 +128,7 @@ public class MagnetismManager : MonoBehaviour
         var heading = magnet1.CurrentPosition - magnet2.CurrentPosition;
         var distance = heading.magnitude;
         var direction = heading / distance;
-        var forceToApply= permeability* magnet1.MagneticCharge*magnet2.MagneticCharge/(4*Mathf.PI*Mathf.Pow(distance,2));
+        var forceToApply= permeability* magnet1.MagneticCharge*magnet2.MagneticCharge/(4*Mathf.PI*Mathf.Pow(distance,2))*Time.fixedDeltaTime*100;;
         var directedForce = direction * (polarzationMultiplier * forceToApply);
         string key = GetKey(magnet1.gameObject, magnet2.gameObject);
 
@@ -169,7 +172,7 @@ public class MagnetismManager : MonoBehaviour
             return;
         }
         var direction = heading / distance;
-        var forceToApply = permeability * magnet.MagneticCharge * metal.MagneticCharge / (4 * Mathf.PI * Mathf.Pow(distance, 2));
+        var forceToApply = permeability * magnet.MagneticCharge * metal.MagneticCharge / (4 * Mathf.PI * Mathf.Pow(distance, 2))*Time.fixedDeltaTime*100;;
         metal.ApplyMagneticForce(direction* forceToApply);
         SetVFXActive(key, true);
     }
@@ -177,3 +180,4 @@ public class MagnetismManager : MonoBehaviour
     
     
 }
+
