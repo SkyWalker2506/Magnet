@@ -50,6 +50,7 @@ public class LevelManager : Singleton<LevelManager>
     }
     public void UnLoadLevel(string levelName)
     {
+        MagnetGameActionSystem.LevelUnloadedStarted?.Invoke();
         var ao = SceneManager.UnloadSceneAsync(levelName);
         if (ao == null)
         {
@@ -66,6 +67,7 @@ public class LevelManager : Singleton<LevelManager>
     }
     void OnUnloadOperationComplete(AsyncOperation ao)
     {
+        MagnetGameActionSystem.LevelUnloadedEnded?.Invoke();
         Debug.Log("Unload Complete.");
     }
 

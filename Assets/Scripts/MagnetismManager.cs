@@ -16,16 +16,14 @@ public class MagnetismManager : MonoBehaviour
     private void OnEnable()
     {
         MagnetGameActionSystem.LevelStarted += (x) =>WaitAndSetVFXs();
-        MagnetGameActionSystem.OnLevelCompleted += DestroyVFXs;
-        MagnetGameActionSystem.OnLevelFailed += DestroyVFXs;
+        MagnetGameActionSystem.LevelUnloadedStarted += DestroyVFXs;
         MagnetGameActionSystem.OnMetalCollected += OnMetalCollected;
     }
     
     private void OnDisable()
     {
         MagnetGameActionSystem.LevelStarted -= (x) =>WaitAndSetVFXs();
-        MagnetGameActionSystem.OnLevelCompleted -= DestroyVFXs;
-        MagnetGameActionSystem.OnLevelFailed -= DestroyVFXs;
+        MagnetGameActionSystem.LevelUnloadedStarted -= DestroyVFXs;
         MagnetGameActionSystem.OnMetalCollected -= OnMetalCollected;
     }
 
@@ -33,11 +31,11 @@ public class MagnetismManager : MonoBehaviour
     {
         foreach (string key in vfxDictionary.Keys)
         {
-            DestroyVfx(key);
+            DestroyVfx(key).Forget();
         }
     }
     
-    string GetKey(GameObject go1, GameObject go2) => $"{go1.GetInstanceID()}{go2.GetInstanceID()}";
+    string GetKey(GameObject go1, GameObject go2) => $"{go1.GetInstanceID()%1000}{go2.GetInstanceID()%1000}";
 
     private async void WaitAndSetVFXs()
     {
@@ -74,7 +72,7 @@ public class MagnetismManager : MonoBehaviour
             string key = GetKey(magnet.gameObject, metal.gameObject);
             if (vfxDictionary.ContainsKey(key))
             {
-                DestroyVfx(key);
+                DestroyVfx(key).Forget();
             }
             else
             {
@@ -83,11 +81,12 @@ public class MagnetismManager : MonoBehaviour
         }
     }
 
-    private void DestroyVfx(string key)
+    private async UniTaskVoid DestroyVfx(string key)
     {
         if (vfxDictionary.ContainsKey(key))
         {
             vfxDictionary[key].SetActive(false);
+            await UniTask.Yield(PlayerLoopTiming.LastFixedUpdate);
             Destroy(vfxDictionary[key].gameObject);
             vfxDictionary.Remove(key); 
         }
