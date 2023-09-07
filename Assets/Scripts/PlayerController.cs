@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerController : Singleton<PlayerController>
 {
-    Camera camera;
+    Camera mainCamera;
 
     public LayerMask playerLayerMask;//magnetin layer ı dragtargets
     public LayerMask floorLayerMask;//magnetin layer ı dragtargets
@@ -53,16 +53,16 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (!player) return;
 
-        if (!camera)
+        if (!mainCamera)
         {
-            camera = Camera.main;
-            if (!camera) return;
+            mainCamera = Camera.main;
+            if (!mainCamera) return;
         }
         
         if (Input.GetMouseButtonDown(0))
         {
             isPlayerMovable = true;
-            touchStartPos =  camera.ScreenToViewportPoint(Input.mousePosition);
+            touchStartPos =  mainCamera.ScreenToViewportPoint(Input.mousePosition);
         }
         
         if (Input.GetMouseButtonUp(0))
@@ -76,7 +76,7 @@ public class PlayerController : Singleton<PlayerController>
             return;
         }
 
-        Vector2 moveVector = 100*((Vector2)camera.ScreenToViewportPoint(Input.mousePosition) - touchStartPos);
+        Vector2 moveVector = 100*((Vector2)mainCamera.ScreenToViewportPoint(Input.mousePosition) - touchStartPos);
         if (moveVector.magnitude < touchDeadPercentage)
         {
             return;

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Timers;
 using Cysharp.Threading.Tasks;
+using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.Profiling;
 
@@ -62,8 +63,6 @@ public class MagnetismManager : MonoBehaviour
             }   
         }
     }
-
-
     
     private void OnMetalCollected(Metal metal)
     {
@@ -101,10 +100,15 @@ public class MagnetismManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Profiler.BeginSample("Magnetism Logic");
+        ApplyMagneticForce();
+        SetVFXPositions();
+    }
+
+    private void ApplyMagneticForce()
+    {
         for (int i = 0; i < SceneMagnets.Count; i++)
         {
-            for (int j = i+1; j < SceneMagnets.Count; j++)
+            for (int j = i + 1; j < SceneMagnets.Count; j++)
             {
                 ApplyMagneticForceToMagnet(SceneMagnets[i], SceneMagnets[j]);
             }
@@ -114,7 +118,25 @@ public class MagnetismManager : MonoBehaviour
                 ApplyMagneticForceToMetal(SceneMagnets[i], metal);
             }
         }
-        Profiler.EndSample();
+    }
+
+    private void SetVFXPositions()
+    {
+        foreach (MagnetVFX magnetVFX in vfxDictionary.Values)
+        {
+            SetVFXNewPositions(magnetVFX);
+        }
+    }
+    
+    private void SetVFXNewPositions(MagnetVFX magnetVFX)
+    {
+        if (!magnetVFX.IsActive)
+        {
+            return;
+        }
+
+        magnetVFX.Pos2.position = Vector3.Lerp(magnetVFX.Pos1.position, magnetVFX.Pos4.position, .33f) + Vector3.down + Vector3.right;
+        magnetVFX.Pos3.position = Vector3.Lerp(magnetVFX.Pos1.position, magnetVFX.Pos4.position, .66f) + Vector3.up * 3 + Vector3.left;
     }
     
     void ApplyMagneticForceToMagnet(Magnet magnet1, Magnet magnet2)
@@ -176,7 +198,5 @@ public class MagnetismManager : MonoBehaviour
         SetVFXActive(key, true);
     }
 
-    
-    
 }
 

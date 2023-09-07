@@ -50,10 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vfx: {fileID: 8276585339212247368}
-  pos1: {fileID: 8046268899065657982}
-  pos2: {fileID: 5192591149866884694}
-  pos3: {fileID: 7884366843381552011}
-  pos4: {fileID: 4242471556924451323}
+  Pos1: {fileID: 8046268899065657982}
+  Pos2: {fileID: 5192591149866884694}
+  Pos3: {fileID: 7884366843381552011}
+  Pos4: {fileID: 4242471556924451323}
 --- !u!1 &4430256306815614814
 GameObject:
   m_ObjectHideFlags: 0
