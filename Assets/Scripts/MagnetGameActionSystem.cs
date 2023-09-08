@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MagnetGameActionSystem 
 {
-    public static  Action OnLevelCompleted;
+    public static Action OnLevelCompleted;
     public static Action<int> LevelStarted;
     public static Action LevelUnloadedStarted;
     public static Action LevelUnloadedEnded;

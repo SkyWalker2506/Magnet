@@ -66,7 +66,7 @@ public class MagnetismManager : MonoBehaviour
     
     private void OnMetalCollected(Metal metal)
     {
-        foreach (var magnet in SceneMagnets)
+        foreach (Magnet magnet in SceneMagnets)
         {
             string key = GetKey(magnet.gameObject, metal.gameObject);
             if (vfxDictionary.ContainsKey(key))
@@ -143,14 +143,14 @@ public class MagnetismManager : MonoBehaviour
     {
         if (magnet1 == magnet2)
             return;
-        var polarzationMultiplier = 1;
+        int polarizationMultiplier = 1;
         if (magnet1.PolarizationValue == magnet2.PolarizationValue)
-            polarzationMultiplier = -1;
-        var heading = magnet1.CurrentPosition - magnet2.CurrentPosition;
-        var distance = heading.magnitude;
-        var direction = heading / distance;
-        var forceToApply= permeability* magnet1.MagneticCharge*magnet2.MagneticCharge/(4*Mathf.PI*Mathf.Pow(distance,2))*Time.fixedDeltaTime*100;;
-        var directedForce = direction * (polarzationMultiplier * forceToApply);
+            polarizationMultiplier = -1;
+        Vector3 heading = magnet1.CurrentPosition - magnet2.CurrentPosition;
+        float distance = heading.magnitude;
+        Vector3 direction = heading / distance;
+        float forceToApply= permeability* magnet1.MagneticCharge*magnet2.MagneticCharge/(4*Mathf.PI*Mathf.Pow(distance,2))*Time.fixedDeltaTime*100;
+        Vector3 directedForce = direction * (polarizationMultiplier * forceToApply);
         string key = GetKey(magnet1.gameObject, magnet2.gameObject);
 
         if (distance < magnet1.MaxDistance )
@@ -184,16 +184,16 @@ public class MagnetismManager : MonoBehaviour
             SetVFXActive(key, false);
             return;
         }
-        var heading = magnet.CurrentPosition - metal.CurrentPosition;//(15,0,0)  10,10,10   5,5,5
-        var distance = heading.magnitude;//15
+        Vector3 heading = magnet.CurrentPosition - metal.CurrentPosition;//(15,0,0)  10,10,10   5,5,5
+        float distance = heading.magnitude;//15
         if (distance > magnet.MaxDistance)
         {
             metal.IsMagnetized = false;
             SetVFXActive(key, false);
             return;
         }
-        var direction = heading / distance;
-        var forceToApply = permeability * magnet.MagneticCharge * metal.MagneticCharge / (4 * Mathf.PI * Mathf.Pow(distance, 2))*Time.fixedDeltaTime*100;;
+        Vector3 direction = heading / distance;
+        float forceToApply = permeability * magnet.MagneticCharge * metal.MagneticCharge / (4 * Mathf.PI * Mathf.Pow(distance, 2))*Time.fixedDeltaTime*100;;
         metal.ApplyMagneticForce(direction* forceToApply);
         SetVFXActive(key, true);
     }

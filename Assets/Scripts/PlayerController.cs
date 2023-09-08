@@ -8,8 +8,6 @@ public class PlayerController : Singleton<PlayerController>
 {
     Camera mainCamera;
 
-    public LayerMask playerLayerMask;//magnetin layer ı dragtargets
-    public LayerMask floorLayerMask;//magnetin layer ı dragtargets
     [SerializeField] float movementSpeed = 200;//dokunulan magnetin hedef dokunuşa ulaşma hızı
     [SerializeField] [Range(0,100)] float touchDeadPercentage = 1;//dokunulan magnetin hedef dokunuşa ulaşma hızı
     bool isPlayerMovable;//magnet hareket edebilir mi
@@ -83,7 +81,6 @@ public class PlayerController : Singleton<PlayerController>
         }
 
         Vector3 direction = new Vector3(-moveVector.normalized.y,0,moveVector.normalized.x);
-
         playerRB.velocity = direction * (Time.deltaTime * movementSpeed);
     }
 

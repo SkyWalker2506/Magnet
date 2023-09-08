@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
     [SerializeField] TMP_Text levelText;
+    [SerializeField] TMP_Text timeText;
     public Image LevelProgressBar;
     public Animator LevelInOut;
     public GameObject GameUI;
@@ -13,6 +14,7 @@ public class UIManager : Singleton<UIManager>
     void OnEnable()
     {
         MagnetGameActionSystem.LevelStarted += SetLevel;
+        TimeManager.OnGameCountDownChanged += SetTime;
         MagnetGameActionSystem.ObjectCollected += SetProgressBar;
         MagnetGameActionSystem.OnLevelCompleted += LevelCompleted;
         MagnetGameActionSystem.OnLevelFailed += LevelFailed;
@@ -22,12 +24,13 @@ public class UIManager : Singleton<UIManager>
     void OnDisable()
     {
         MagnetGameActionSystem.LevelStarted -= SetLevel;
+        TimeManager.OnGameCountDownChanged -= SetTime;
         MagnetGameActionSystem.ObjectCollected -= SetProgressBar;
         MagnetGameActionSystem.OnLevelCompleted -= LevelCompleted;
         MagnetGameActionSystem.OnLevelFailed -= LevelFailed;
     }
 
-    public void SetLevel(int level)
+    private void SetLevel(int level)
     {
         LevelInOut.SetTrigger("LevelIn");
         GameUI.SetActive(true);
@@ -36,6 +39,11 @@ public class UIManager : Singleton<UIManager>
         SetProgressBar(0);
     }
 
+    private void SetTime(int time)
+    {
+        timeText.SetText(time.ToString());
+    }
+    
     private void SetProgressBar(int collected)
     {
         LevelProgressBar.fillAmount = (float)collected / MagnetismManager.SceneMetals.Count;
