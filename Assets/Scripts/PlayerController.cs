@@ -16,27 +16,29 @@ public class PlayerController : Singleton<PlayerController>
     Vector3 screenToFloorPosition;
     bool isPlayerMoveable;
     private Vector2 touchStartPos;
-    
+    private bool listenMovement;
     
     void OnEnable()
     {
         MagnetGameActionSystem.LevelStarted += SetLevel;
-        MagnetGameActionSystem.OnLevelFailed += DisablePlayer;
+        MagnetGameActionSystem.OnLevelFailed += DisablePlayerController;
     }
 
     void OnDisable()
     {
         MagnetGameActionSystem.LevelStarted -= SetLevel;
-        MagnetGameActionSystem.OnLevelFailed -= DisablePlayer;
+        MagnetGameActionSystem.OnLevelFailed -= DisablePlayerController;
     }
 
-    void DisablePlayer()
+    void DisablePlayerController()
     {
-        isPlayerMoveable = false;
+        listenMovement = false;
+        isPlayerMovable = false;
     }
 
     void SetLevel(int level)
     {
+        listenMovement = true;
         Invoke(nameof(SetPlayer), .5f);
     }
 
@@ -50,7 +52,7 @@ public class PlayerController : Singleton<PlayerController>
     void Update()
     {
         if (!player) return;
-
+        if (!listenMovement) return;
         if (!mainCamera)
         {
             mainCamera = Camera.main;
