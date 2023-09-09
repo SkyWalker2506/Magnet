@@ -10,10 +10,14 @@ namespace EditorTools
 
         private void OnGUI()
         {
+            EditorGUILayout.BeginVertical();
             EditorGUILayout.BeginHorizontal();
             WinLevelButton();
             LoseLevelButton();
             EditorGUILayout.EndHorizontal();
+            SetFrameRate();
+            EditorGUILayout.EndVertical();
+
         }
 
         void WinLevelButton()
@@ -30,6 +34,22 @@ namespace EditorTools
             {
                 MagnetGameActionSystem.OnLevelFailed?.Invoke();
             }
+        }
+
+        private int frameRate;
+        void SetFrameRate()
+        {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUIUtility.labelWidth = 70;   
+
+            frameRate = EditorGUILayout.IntField("Frame rate:", frameRate);
+
+            if (GUILayout.Button("Set Frame Rate"))
+            {
+                Application.targetFrameRate = frameRate;
+            } 
+            EditorGUILayout.EndHorizontal();
+
         }
     
     }

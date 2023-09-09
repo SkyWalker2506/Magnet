@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -17,7 +14,7 @@ public class PlayerController : Singleton<PlayerController>
     bool isPlayerMoveable;
     private Vector2 touchStartPos;
     private bool listenMovement;
-    
+    private Vector3 moveDirection; 
     void OnEnable()
     {
         MagnetGameActionSystem.LevelStarted += SetLevel;
@@ -69,21 +66,28 @@ public class PlayerController : Singleton<PlayerController>
         {
             isPlayerMovable = false;
         }
-
-        if (!isPlayerMovable)
-        {
-            playerRB.velocity = Vector3.zero;
-            return;
-        }
-
+ 
         Vector2 moveVector = 100*((Vector2)mainCamera.ScreenToViewportPoint(Input.mousePosition) - touchStartPos);
         if (moveVector.magnitude < touchDeadPercentage)
         {
             return;
         }
-
-        Vector3 direction = new Vector3(-moveVector.normalized.y,0,moveVector.normalized.x);
-        playerRB.velocity = direction * (Time.deltaTime * movementSpeed);
+        
+        moveDirection = new Vector3(-moveVector.normalized.y,0,moveVector.normalized.x);
     }
 
+
+    private void FixedUpdate()
+    {
+        if (!player) return;
+        if (!listenMovement) return;
+        if (!isPlayerMovable)
+        {
+            playerRB.velocity = Vector3.zero;
+            return;
+        }
+        playerRB.velocity = moveDirection * (Time.fixedDeltaTime * movementSpeed);
+
+
+    }
 }
