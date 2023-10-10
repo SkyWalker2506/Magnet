@@ -1,9 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-
 [RequireComponent(typeof(Rigidbody))]
-public class Metal : MonoBehaviour, ICollectable
+public class Metal : MonoBehaviour, ICollectable,IRespawnable
 {
     public MetalType Type = MetalType.Black;
 
@@ -12,9 +11,10 @@ public class Metal : MonoBehaviour, ICollectable
     public bool UseMagnetism;
     public float Permeability = 1;//Geçirgenlik
 
-
     public Rigidbody MetalRB;
     public bool IsMagnetized;
+    public Vector3 InitialSpawnPosition { get; private set; }
+
     public Action OnCollected { get; }
 
     public Vector3 CurrentPosition { get { return transform.position; } }
@@ -23,6 +23,9 @@ public class Metal : MonoBehaviour, ICollectable
     {
         UseMagnetism = true;
         MetalRB = GetComponent<Rigidbody>();
+        MetalRB.useGravity = true;
+        MetalRB.constraints = RigidbodyConstraints.None;
+        InitialSpawnPosition = transform.position;
     }
 
     private void OnEnable()
@@ -45,7 +48,6 @@ public class Metal : MonoBehaviour, ICollectable
         }
     }
 
-
     private void OnCollisionStay(Collision collision)
     {
         if (collision.transform.CompareTag("Player"))
@@ -59,10 +61,8 @@ public class Metal : MonoBehaviour, ICollectable
     private void OnCollisionExit(Collision collision)
     {
         UseMagnetism = true;
-
     }
 
-    
     public void Collect()
     {
         GetComponent<MeshRenderer>().enabled = false;
@@ -70,13 +70,18 @@ public class Metal : MonoBehaviour, ICollectable
         OnCollected?.Invoke();
         UseMagnetism= false;
         MagnetGameActionSystem.OnMetalCollected?.Invoke(this);
-        //enabled = false;
     }
 
     public void ApplyMagneticForce(Vector3 forceToApply)
     {
         MetalRB.AddForce(forceToApply);
         IsMagnetized = true;
+    }
+
+    public void Respawn()
+    {
+        transform.position = InitialSpawnPosition;
+        MetalRB.velocity = Vector3.zero;
     }
 }
 

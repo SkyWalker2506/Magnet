@@ -134,8 +134,14 @@ PrefabInstance:
     - target: {fileID: 388844177660480948, guid: 3a96e18d1a7c84dac8b96c4307263ad6,
         type: 3}
       propertyPath: systemPrefabs.Array.size
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 388844177660480948, guid: 3a96e18d1a7c84dac8b96c4307263ad6,
+        type: 3}
+      propertyPath: systemPrefabs.Array.data[10]
+      value: 
+      objectReference: {fileID: 2626045541298079569, guid: 2af75f17284f344fea886b1f18f2a476,
+        type: 3}
     - target: {fileID: 2483362437624349799, guid: 3a96e18d1a7c84dac8b96c4307263ad6,
         type: 3}
       propertyPath: m_Name
