@@ -6,7 +6,7 @@ public class UIManager : Singleton<UIManager>
 {
     [SerializeField] TMP_Text levelText;
     [SerializeField] TMP_Text timeText;
-    public Image LevelProgressBar;
+    public Slider LevelProgressBar;
     public Animator LevelInOut;
     public GameObject GameUI;
     public GameObject FailedUI;
@@ -46,7 +46,7 @@ public class UIManager : Singleton<UIManager>
     
     private void SetProgressBar(int collected)
     {
-        LevelProgressBar.fillAmount = (float)collected / MagnetismManager.SceneMetals.Count;
+        LevelProgressBar.value = (float)collected / Mathf.Max(1,MagnetismManager.SceneMetals.Count);
     }
 
     void LevelCompleted()
