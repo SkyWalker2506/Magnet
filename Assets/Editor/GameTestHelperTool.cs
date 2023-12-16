@@ -16,6 +16,7 @@ namespace EditorTools
             LoseLevelButton();
             EditorGUILayout.EndHorizontal();
             SetFrameRate();
+            ReplaceMetals();
             EditorGUILayout.EndVertical();
 
         }
@@ -47,6 +48,27 @@ namespace EditorTools
             if (GUILayout.Button("Set Frame Rate"))
             {
                 Application.targetFrameRate = frameRate;
+            } 
+            EditorGUILayout.EndHorizontal();
+
+        }
+        
+        private Object metalPrefab;
+        void ReplaceMetals()
+        {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUIUtility.labelWidth = 70;   
+
+            metalPrefab = EditorGUILayout.ObjectField( metalPrefab,typeof(GameObject),false);
+            var sceneMetals = FindObjectsOfType<Metal>();
+            if (GUILayout.Button("Replace to Metal Prefabs"))
+            {
+                foreach (var metal in sceneMetals)
+                {
+                    GameObject createdMetal =(GameObject)PrefabUtility.InstantiatePrefab(metalPrefab,metal.transform.parent);
+                    createdMetal.transform.position = metal.transform.position;
+                    DestroyImmediate(metal.gameObject);
+                }
             } 
             EditorGUILayout.EndHorizontal();
 
