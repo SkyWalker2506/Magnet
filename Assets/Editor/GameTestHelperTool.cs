@@ -1,5 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace EditorTools
 {
@@ -54,6 +55,7 @@ namespace EditorTools
         }
         
         private Object metalPrefab;
+        [MenuItem("GameTestHelperTool/ReplaceMetals %r")] 
         void ReplaceMetals()
         {
             EditorGUILayout.BeginHorizontal();
@@ -61,15 +63,19 @@ namespace EditorTools
 
             metalPrefab = EditorGUILayout.ObjectField( metalPrefab,typeof(GameObject),false);
             var sceneMetals = FindObjectsOfType<Metal>();
-            if (GUILayout.Button("Replace to Metal Prefabs"))
+            Event e = Event.current;
+            if (GUILayout.Button("Replace to Metal Prefabs")|| (e.type == EventType.KeyDown &&  e.keyCode == KeyCode.R && e.command))
             {
                 foreach (var metal in sceneMetals)
                 {
                     GameObject createdMetal =(GameObject)PrefabUtility.InstantiatePrefab(metalPrefab,metal.transform.parent);
                     createdMetal.transform.position = metal.transform.position;
                     DestroyImmediate(metal.gameObject);
+                    EditorUtility.SetDirty(createdMetal);
                 }
+                AssetDatabase.SaveAssets();
             } 
+            
             EditorGUILayout.EndHorizontal();
 
         }
