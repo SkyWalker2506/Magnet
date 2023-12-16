@@ -8,7 +8,7 @@ public class ComboController : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text comboText;
-    private int combo;
+    private int combo=2;
     private float lastScoredTime;
     [Range(0.1f, 5)]
     [SerializeField]
@@ -38,12 +38,15 @@ public class ComboController : MonoBehaviour
             ShowCombo();
         }
         else
+        {
             combo = 1;
-        lastScoredTime = Time.realtimeSinceStartup;
+            lastScoredTime = Time.realtimeSinceStartup;
+        }
     }
 
     [Button]
-    async void ShowCombo()
+    void ShowCombo() => ShowComboAsync().Forget();
+    async UniTaskVoid ShowComboAsync()
     {
         comboText.gameObject.SetActive(true);
         comboText.color= new Color().RandomColor();
@@ -51,6 +54,7 @@ public class ComboController : MonoBehaviour
         comboText.transform.DOShakeRotation(screenTime, 45, 5, 45);
         await UniTask.WaitUntil(()=>lastScoredTime + screenTime < Time.realtimeSinceStartup);
         comboText.gameObject.SetActive(false);
+        lastScoredTime = Time.realtimeSinceStartup;
     }
 
 }
