@@ -1,6 +1,5 @@
-using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.UI;
+using VInspector;
 
 [CreateAssetMenu(menuName = "Create GameColorSetter", fileName = "GameColorSetter", order = 0)]
 public class GameColorSetter : ScriptableObject
@@ -26,7 +25,7 @@ public class GameColorSetter : ScriptableObject
         SetAll();
     }
 
-    [Button]
+     [Button]
     void SetPlayerColor()
     {
         if (playerMaterial)

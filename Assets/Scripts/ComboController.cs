@@ -1,12 +1,13 @@
 ﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using VInspector;
 
 public class ComboController : MonoBehaviour
 {
     [SerializeField]
-    private Text comboText;
+    private TMP_Text comboText;
     private int combo;
     private float lastScoredTime;
     [Range(0.1f, 5)]
@@ -41,11 +42,12 @@ public class ComboController : MonoBehaviour
         lastScoredTime = Time.realtimeSinceStartup;
     }
 
+    [Button]
     async void ShowCombo()
     {
         comboText.gameObject.SetActive(true);
         comboText.color= new Color().RandomColor();
-        comboText.text = $"x{combo}";
+        comboText.SetText($"x{combo}"); 
         comboText.transform.DOShakeRotation(screenTime, 45, 5, 45);
         await UniTask.WaitUntil(()=>lastScoredTime + screenTime < Time.realtimeSinceStartup);
         comboText.gameObject.SetActive(false);

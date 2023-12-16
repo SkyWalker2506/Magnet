@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class BlackHole : MonoBehaviour
 {
-    [SerializeField]
-    LayerMask metalLayer;
-    [SerializeField]
-    LayerMask otherLayers;
     List<GameObject> dropObjects=new List<GameObject>();
     public MetalType Type = MetalType.Black;
     [SerializeField]
