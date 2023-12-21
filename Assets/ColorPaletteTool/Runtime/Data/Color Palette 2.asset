@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Color Palette 2
   m_EditorClassIdentifier: 
   <Colors>k__BackingField:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 1, g: 0.53949636, b: 0, a: 1}
+  - {r: 0.4811321, g: 0.07489321, b: 0.30299675, a: 1}
+  - {r: 1, g: 0.09860496, b: 0, a: 1}
