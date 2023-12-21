@@ -1,6 +1,5 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace EditorTools
 {
@@ -19,7 +18,6 @@ namespace EditorTools
             SetFrameRate();
             ReplaceMetals();
             EditorGUILayout.EndVertical();
-
         }
 
         void WinLevelButton()

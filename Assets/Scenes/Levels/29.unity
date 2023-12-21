@@ -140,12 +140,12 @@ PrefabInstance:
     - target: {fileID: 4128796066427369297, guid: 9d792cab51cc446559be38cf654299ac,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 4128796066427369297, guid: 9d792cab51cc446559be38cf654299ac,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.93
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4128796066427369297, guid: 9d792cab51cc446559be38cf654299ac,
         type: 3}
@@ -155,7 +155,7 @@ PrefabInstance:
     - target: {fileID: 4128796066427369297, guid: 9d792cab51cc446559be38cf654299ac,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.1
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 4128796066427369297, guid: 9d792cab51cc446559be38cf654299ac,
         type: 3}
@@ -219,7 +219,7 @@ PrefabInstance:
     - target: {fileID: 8857366733820222215, guid: 677ef88ebba218b48b616f4c78c81a5d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8857366733820222215, guid: 677ef88ebba218b48b616f4c78c81a5d,
         type: 3}
@@ -450,7 +450,7 @@ PrefabInstance:
     - target: {fileID: 1105024024403439240, guid: fd88dc95486ba974388efa20a80d67ea,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1105024024403439240, guid: fd88dc95486ba974388efa20a80d67ea,
         type: 3}
@@ -559,37 +559,6 @@ Transform:
   - {fileID: 1510940094}
   - {fileID: 87172167}
   - {fileID: 129940567}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &296630661
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 296630662}
-  m_Layer: 0
-  m_Name: Magnets
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &296630662
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296630661}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -977,7 +946,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1015,7 +984,7 @@ Transform:
   - {fileID: 2145738939}
   - {fileID: 566637090}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1036755451
 PrefabInstance:
@@ -1280,7 +1249,7 @@ PrefabInstance:
     - target: {fileID: 8857366733820222215, guid: 677ef88ebba218b48b616f4c78c81a5d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8857366733820222215, guid: 677ef88ebba218b48b616f4c78c81a5d,
         type: 3}
@@ -1640,7 +1609,7 @@ PrefabInstance:
     - target: {fileID: 2504080871356411394, guid: cd169d9da2e2e29448c65ceace0807f1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2504080871356411394, guid: cd169d9da2e2e29448c65ceace0807f1,
         type: 3}
@@ -1718,7 +1687,7 @@ PrefabInstance:
     - target: {fileID: 2505956552042297874, guid: a7a55d21886c3614e87f92c7705df80f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2505956552042297874, guid: a7a55d21886c3614e87f92c7705df80f,
         type: 3}
