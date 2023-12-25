@@ -6,24 +6,24 @@ using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.Profiling;
 
-public class MagnetismManager : MonoBehaviour
+public class MagnetismManager : Singleton<MagnetismManager>
 {
-    public static List<Magnet> SceneMagnets = new List<Magnet>();
-    public static List<Metal> SceneMetals = new List<Metal>();
+    public List<Magnet> SceneMagnets { get; private set; } = new List<Magnet>();
+    public List<Metal> SceneMetals = new List<Metal>();
     [SerializeField] private MagnetVFX vfxPrefab; 
-    private static float permeability = 1;// Ortam�n Ge�irgenli�i
+    private float permeability = 1;// Ortam�n Ge�irgenli�i
     private Dictionary<string, MagnetVFX> vfxDictionary = new Dictionary<string, MagnetVFX>(); 
 
     private void OnEnable()
     {
-        MagnetGameActionSystem.LevelStarted += (x) =>WaitAndSetVFXs();
+        //MagnetGameActionSystem.LevelStarted += (x) =>WaitAndSetVFXs();
         MagnetGameActionSystem.LevelUnloadedStarted += DestroyVFXs;
         MagnetGameActionSystem.OnMetalCollected += OnMetalCollected;
     }
     
     private void OnDisable()
     {
-        MagnetGameActionSystem.LevelStarted -= (x) =>WaitAndSetVFXs();
+       // MagnetGameActionSystem.LevelStarted -= (x) =>WaitAndSetVFXs();
         MagnetGameActionSystem.LevelUnloadedStarted -= DestroyVFXs;
         MagnetGameActionSystem.OnMetalCollected -= OnMetalCollected;
     }
@@ -86,8 +86,11 @@ public class MagnetismManager : MonoBehaviour
         {
             vfxDictionary[key].SetActive(false);
             await UniTask.Yield(PlayerLoopTiming.LastFixedUpdate);
-            Destroy(vfxDictionary[key].gameObject);
-            vfxDictionary.Remove(key); 
+            if (vfxDictionary.ContainsKey(key))
+            {
+                vfxDictionary.Remove(key); 
+                Destroy(vfxDictionary[key].gameObject);
+            }
         }
     }
 
@@ -198,5 +201,58 @@ public class MagnetismManager : MonoBehaviour
         SetVFXActive(key, true);
     }
 
+    public void AddMagnet(Magnet addedMagnet)
+    {
+        SceneMagnets.Add(addedMagnet);
+        MagnetVFX vfx;
+
+        foreach (Magnet magnet2 in SceneMagnets)
+        {
+            if (addedMagnet != magnet2)
+            {
+                vfx=Instantiate(vfxPrefab);
+                vfx.SetTargets(addedMagnet.transform,magnet2.transform);
+                vfxDictionary.Add(GetKey(addedMagnet.gameObject,magnet2.gameObject),vfx);
+            }
+        }   
+            
+        foreach (Metal metal in SceneMetals)
+        {
+            vfx=Instantiate(vfxPrefab);
+            vfx.SetTargets(addedMagnet.transform, metal.transform);
+            vfxDictionary.Add(GetKey(addedMagnet.gameObject,metal.gameObject),vfx);
+        }  
+
+    }
+    
+    public void RemoveMagnet(Magnet removedMagnet)
+    {
+        SceneMagnets.Remove(removedMagnet);
+        foreach (Magnet magnet in SceneMagnets)
+        {
+            string key = GetKey(removedMagnet.gameObject, magnet.gameObject);
+            if (vfxDictionary.ContainsKey(key))
+            {
+                DestroyVfx(key).Forget();
+            }
+            else
+            {
+                Debug.Log($"{removedMagnet} and {magnet} vfx not found");
+            }
+        }
+        
+        foreach (var metal in SceneMetals)
+        {
+            string key = GetKey(removedMagnet.gameObject, metal.gameObject);
+            if (vfxDictionary.ContainsKey(key))
+            {
+                DestroyVfx(key).Forget();
+            }
+            else
+            {
+                Debug.Log($"{removedMagnet} and {metal} vfx not found");
+            }
+        }
+    }
 }
 

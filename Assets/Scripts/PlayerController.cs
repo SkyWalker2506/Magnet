@@ -1,54 +1,51 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerController : Singleton<PlayerController>
+public class PlayerController : MonoBehaviour
 {
-    Camera mainCamera;
 
-    [SerializeField] float movementSpeed = 200;//dokunulan magnetin hedef dokunuşa ulaşma hızı
-    [SerializeField] [Range(0,100)] float touchDeadPercentage = 1;//dokunulan magnetin hedef dokunuşa ulaşma hızı
-    bool isPlayerMovable;//magnet hareket edebilir mi
-    Transform player;//raycast ışınının vurduğu noktanın transformu
-    Rigidbody playerRB;//hareket ettirilmek istenen magnetin rigidbody si
+    [SerializeField] private PlayerView playerView;
+    [Tooltip("dokunulan magnetin hedef dokunuşa ulaşma hızı")]
+    [SerializeField] float movementSpeed = 200;
+    [Tooltip("dead zone yüzdeliği")]
+    [SerializeField] [Range(0,100)] float touchDeadPercentage = 10;
     Vector3 screenToFloorPosition;
-    bool isPlayerMoveable;
     private Vector2 touchStartPos;
-    private bool listenMovement;
-    private Vector3 moveDirection; 
+    private bool listenMovement=true;
+    private Magnet magnet;
+    Camera mainCamera;
+    private IMovementLogic movementLogic;
+    private IInput magnetismToggleInput;
+        
+    void Awake()
+    {
+        magnet = GetComponent<Magnet>();
+        movementLogic = new PhysicalMovementLogic(movementSpeed, GetComponent<Rigidbody>());
+        listenMovement = true;
+        magnetismToggleInput = new MultiClick(2,.5f);
+        SetMagnetism(true);
+    }
+    
     void OnEnable()
     {
-        MagnetGameActionSystem.LevelStarted += SetLevel;
         MagnetGameActionSystem.OnLevelFailed += DisablePlayerController;
+        magnetismToggleInput.OnInputCalled += ToggleMagnet;
     }
 
     void OnDisable()
     {
-        MagnetGameActionSystem.LevelStarted -= SetLevel;
         MagnetGameActionSystem.OnLevelFailed -= DisablePlayerController;
+        magnetismToggleInput.OnInputCalled -= ToggleMagnet;
     }
-
+    
     void DisablePlayerController()
     {
         listenMovement = false;
-        isPlayerMovable = false;
+        movementLogic.IsMovable = false;
     }
 
-    void SetLevel(int level)
-    {
-        listenMovement = true;
-        Invoke(nameof(SetPlayer), .5f);
-    }
-
-    void SetPlayer()
-    {
-        player = Player.CurrentPlayer.transform;
-        playerRB = player.GetComponent<Rigidbody>();
-        isPlayerMoveable = true;
-    }
-    
     void Update()
     {
-        if (!player) return;
+        magnetismToggleInput.Update();
         if (!listenMovement) return;
         if (!mainCamera)
         {
@@ -58,36 +55,51 @@ public class PlayerController : Singleton<PlayerController>
         
         if (Input.GetMouseButtonDown(0))
         {
-            isPlayerMovable = true;
+            movementLogic.IsMovable = true;
             touchStartPos =  mainCamera.ScreenToViewportPoint(Input.mousePosition);
+        }
+        
+        if (Input.GetMouseButton(0))
+        {
+            movementLogic.IsMovable = true;
         }
         
         if (Input.GetMouseButtonUp(0))
         {
-            isPlayerMovable = false;
+            movementLogic.IsMovable = false;
         }
- 
-        Vector2 moveVector = 100*((Vector2)mainCamera.ScreenToViewportPoint(Input.mousePosition) - touchStartPos);
-        if (moveVector.magnitude < touchDeadPercentage)
+
+        if (!movementLogic.IsMovable)
         {
             return;
         }
         
-        moveDirection = new Vector3(-moveVector.normalized.y,0,moveVector.normalized.x);
-    }
+        Vector2 moveVector = 100*((Vector2)mainCamera.ScreenToViewportPoint(Input.mousePosition) - touchStartPos);
+        Debug.Log(Input.mousePosition);
+        Debug.Log(touchStartPos);
+        movementLogic.IsMovable = !(moveVector.magnitude < touchDeadPercentage);
 
+        if (movementLogic.IsMovable)
+        {
+            movementLogic.MoveDirection = new Vector3(-moveVector.normalized.y,0,moveVector.normalized.x);
+        }
+    }
 
     private void FixedUpdate()
     {
-        if (!player) return;
         if (!listenMovement) return;
-        if (!isPlayerMovable)
-        {
-            playerRB.velocity = Vector3.zero;
-            return;
-        }
-        playerRB.velocity = moveDirection * (Time.fixedDeltaTime * movementSpeed);
+            movementLogic.Move();
+    }
 
 
+    private void ToggleMagnet()
+    {
+        SetMagnetism(!magnet.enabled);
+    }
+
+    private void SetMagnetism(bool value)
+    {
+        magnet.enabled = value;
+        playerView.TogglePlayerVisual(value);
     }
 }

@@ -24,14 +24,18 @@ public class Magnet : MonoBehaviour
 
     private void OnEnable()
     {
-        if (!MagnetismManager.SceneMagnets.Contains(this))
-            MagnetismManager.SceneMagnets.Add(this);
+        if (!MagnetismManager.Instance.SceneMagnets.Contains(this))
+        {
+            MagnetismManager.Instance.AddMagnet(this);
+        }
     }
 
     private void OnDisable()
     {
-        if (MagnetismManager.SceneMagnets.Contains(this))
-            MagnetismManager.SceneMagnets.Remove(this);
+        if (MagnetismManager.Instance&&MagnetismManager.Instance.SceneMagnets.Contains(this))
+        {
+            MagnetismManager.Instance.RemoveMagnet(this);
+        }
     }
     
     public void ApplyMagneticForce(Vector3 forceToApply)

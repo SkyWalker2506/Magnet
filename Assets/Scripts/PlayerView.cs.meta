@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3ce12e318e514f34ae83ac27624f59ec
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - renderer: {instanceID: 0}
+  - magnetismOnMaterial: {fileID: 2100000, guid: 6b5e73cffc4cf8c4c8ef374df4e35382,
+      type: 2}
+  - magnetismOffMaterial: {fileID: 2100000, guid: a8544b77ace96479fa744e9f08dc4f07,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

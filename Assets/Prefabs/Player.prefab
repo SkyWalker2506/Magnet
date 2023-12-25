@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2504080871356411398}
   - component: {fileID: 2504080871356411401}
   - component: {fileID: 2504080871356411395}
+  - component: {fileID: 917863469634621951}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2504080871356411400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.157585, y: 1.5, z: 0.6660037}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.75, y: 1.75, z: 1.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -149,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PolarizationValue: 1
   MagneticCharge: 2000
-  MagnetRB: {fileID: 0}
+  MagnetRB: {fileID: 2504080871356411398}
   MaxDistance: 5.5
 --- !u!114 &2504080871356411395
 MonoBehaviour:
@@ -163,3 +164,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d683131ca5a0fc14898b5a71825c6a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerView: {fileID: 917863469634621951}
+  movementSpeed: 500
+  touchDeadPercentage: 1
+--- !u!114 &917863469634621951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504080871356411400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce12e318e514f34ae83ac27624f59ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 2504080871356411396}
+  magnetismOnMaterial: {fileID: 2100000, guid: 6b5e73cffc4cf8c4c8ef374df4e35382, type: 2}
+  magnetismOffMaterial: {fileID: 2100000, guid: a8544b77ace96479fa744e9f08dc4f07,
+    type: 2}

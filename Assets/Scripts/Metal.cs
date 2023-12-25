@@ -30,14 +30,18 @@ public class Metal : MonoBehaviour, ICollectable,IRespawnable
 
     private void OnEnable()
     {
-        if (!MagnetismManager.SceneMetals.Contains(this))
-            MagnetismManager.SceneMetals.Add(this);
+        if (MagnetismManager.Instance&&!MagnetismManager.Instance.SceneMetals.Contains(this))
+        {
+            MagnetismManager.Instance.SceneMetals.Add(this);
+        }
     }
     
     private void OnDisable()
     {
-        if (MagnetismManager.SceneMetals.Contains(this))
-            MagnetismManager.SceneMetals.Remove(this);
+        if (MagnetismManager.Instance&&MagnetismManager.Instance.SceneMetals.Contains(this))
+        {
+            MagnetismManager.Instance.SceneMetals.Remove(this);
+        }
     }
     
     private void OnCollisionEnter(Collision collision)

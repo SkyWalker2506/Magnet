@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,6 @@ public class UIManager : Singleton<UIManager>
         MagnetGameActionSystem.ObjectCollected += SetProgressBar;
         MagnetGameActionSystem.OnLevelCompleted += LevelCompleted;
         MagnetGameActionSystem.OnLevelFailed += LevelFailed;
-        SetProgressBar(0);
     }
 
     void OnDisable()
@@ -28,6 +28,11 @@ public class UIManager : Singleton<UIManager>
         MagnetGameActionSystem.ObjectCollected -= SetProgressBar;
         MagnetGameActionSystem.OnLevelCompleted -= LevelCompleted;
         MagnetGameActionSystem.OnLevelFailed -= LevelFailed;
+    }
+
+    private void Start()
+    {
+        SetProgressBar(0);
     }
 
     private void SetLevel(int level)
@@ -46,7 +51,7 @@ public class UIManager : Singleton<UIManager>
     
     private void SetProgressBar(int collected)
     {
-        LevelProgressBar.value = (float)collected / Mathf.Max(1,MagnetismManager.SceneMetals.Count);
+        LevelProgressBar.value = (float)collected / Mathf.Max(1,MagnetismManager.Instance.SceneMetals.Count);
     }
 
     void LevelCompleted()

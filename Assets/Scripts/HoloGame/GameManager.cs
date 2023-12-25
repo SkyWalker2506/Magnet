@@ -48,7 +48,7 @@ public class GameManager : Singleton<GameManager>
 
     void CheckIfLevelEnded(int collected)
     {
-        if (collected == MagnetismManager.SceneMetals.Count)
+        if (collected == MagnetismManager.Instance.SceneMetals.Count)
         {
             MagnetGameActionSystem.OnLevelCompleted?.Invoke();
         }

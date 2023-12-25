@@ -23,6 +23,9 @@ public class MagnetVFX : MonoBehaviour
     
     public void SetActive(bool isActive)
     {
-        vfx.SetActive(isActive);
+        if (vfx)
+        {
+            vfx.SetActive(isActive);
+        }
     }
 }
