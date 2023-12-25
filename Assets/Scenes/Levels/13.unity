@@ -1016,11 +1016,6 @@ PrefabInstance:
       propertyPath: MagneticCharge
       value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 4290785045639159826, guid: 4cb98e1242d69e24ea6b6107b7eff552,
-        type: 3}
-      propertyPath: PolarizationValue
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4290785045639159827, guid: 4cb98e1242d69e24ea6b6107b7eff552,
         type: 3}
       propertyPath: m_Name

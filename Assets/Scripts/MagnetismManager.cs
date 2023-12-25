@@ -88,8 +88,11 @@ public class MagnetismManager : Singleton<MagnetismManager>
             await UniTask.Yield(PlayerLoopTiming.LastFixedUpdate);
             if (vfxDictionary.ContainsKey(key))
             {
+                if (vfxDictionary[key].gameObject)
+                {
+                    Destroy(vfxDictionary[key].gameObject);
+                }
                 vfxDictionary.Remove(key); 
-                Destroy(vfxDictionary[key].gameObject);
             }
         }
     }
@@ -139,7 +142,7 @@ public class MagnetismManager : Singleton<MagnetismManager>
         }
 
         magnetVFX.Pos2.position = Vector3.Lerp(magnetVFX.Pos1.position, magnetVFX.Pos4.position, .33f) + Vector3.down + Vector3.right;
-        magnetVFX.Pos3.position = Vector3.Lerp(magnetVFX.Pos1.position, magnetVFX.Pos4.position, .66f) + Vector3.up * 3 + Vector3.left;
+        magnetVFX.Pos3.position = Vector3.Lerp(magnetVFX.Pos1.position, magnetVFX.Pos4.position, .66f) + Vector3.up * 5 + Vector3.left;
     }
     
     void ApplyMagneticForceToMagnet(Magnet magnet1, Magnet magnet2)
@@ -150,7 +153,7 @@ public class MagnetismManager : Singleton<MagnetismManager>
         if (magnet1.PolarizationValue == magnet2.PolarizationValue)
             polarizationMultiplier = -1;
         Vector3 heading = magnet1.CurrentPosition - magnet2.CurrentPosition;
-        float distance = heading.magnitude;
+        float distance = Mathf.Max(heading.magnitude,1);
         Vector3 direction = heading / distance;
         float forceToApply= permeability* magnet1.MagneticCharge*magnet2.MagneticCharge/(4*Mathf.PI*Mathf.Pow(distance,2))*Time.fixedDeltaTime*100;
         Vector3 directedForce = direction * (polarizationMultiplier * forceToApply);
@@ -188,7 +191,8 @@ public class MagnetismManager : Singleton<MagnetismManager>
             return;
         }
         Vector3 heading = magnet.CurrentPosition - metal.CurrentPosition;//(15,0,0)  10,10,10   5,5,5
-        float distance = heading.magnitude;//15
+        float distance = Mathf.Max(heading.magnitude,1);
+
         if (distance > magnet.MaxDistance)
         {
             metal.IsMagnetized = false;
@@ -206,13 +210,24 @@ public class MagnetismManager : Singleton<MagnetismManager>
         SceneMagnets.Add(addedMagnet);
         MagnetVFX vfx;
 
-        foreach (Magnet magnet2 in SceneMagnets)
+        foreach (Magnet magnet in SceneMagnets)
         {
-            if (addedMagnet != magnet2)
+            string key = GetKey(addedMagnet.gameObject, magnet.gameObject);
+            if (vfxDictionary.ContainsKey(key))
+            {
+                continue;
+            }
+            key = GetKey(magnet.gameObject, addedMagnet.gameObject);
+            if (vfxDictionary.ContainsKey(key))
+            {
+                continue;
+            }
+            
+            if (addedMagnet != magnet)
             {
                 vfx=Instantiate(vfxPrefab);
-                vfx.SetTargets(addedMagnet.transform,magnet2.transform);
-                vfxDictionary.Add(GetKey(addedMagnet.gameObject,magnet2.gameObject),vfx);
+                vfx.SetTargets(addedMagnet.transform,magnet.transform);
+                vfxDictionary.Add(GetKey(addedMagnet.gameObject,magnet.gameObject),vfx);
             }
         }   
             
@@ -238,6 +253,15 @@ public class MagnetismManager : Singleton<MagnetismManager>
             else
             {
                 Debug.Log($"{removedMagnet} and {magnet} vfx not found");
+            }
+            key = GetKey(magnet.gameObject, removedMagnet.gameObject);
+            if (vfxDictionary.ContainsKey(key))
+            {
+                DestroyVfx(key).Forget();
+            }
+            else
+            {
+                Debug.Log($"{magnet} and {removedMagnet} vfx not found");
             }
         }
         
