@@ -1,29 +1,23 @@
-using System;
 using System.Collections.Generic;
-using System.Timers;
 using Cysharp.Threading.Tasks;
-using Unity.Jobs;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 public class MagnetismManager : Singleton<MagnetismManager>
 {
     public List<Magnet> SceneMagnets { get; private set; } = new List<Magnet>();
     public List<Metal> SceneMetals = new List<Metal>();
     [SerializeField] private MagnetVFX vfxPrefab; 
-    private float permeability = 1;// Ortam�n Ge�irgenli�i
+    private float permeability = 1;
     private Dictionary<string, MagnetVFX> vfxDictionary = new Dictionary<string, MagnetVFX>(); 
 
     private void OnEnable()
     {
-        //MagnetGameActionSystem.LevelStarted += (x) =>WaitAndSetVFXs();
         MagnetGameActionSystem.LevelUnloadedStarted += DestroyVFXs;
         MagnetGameActionSystem.OnMetalCollected += OnMetalCollected;
     }
     
     private void OnDisable()
     {
-       // MagnetGameActionSystem.LevelStarted -= (x) =>WaitAndSetVFXs();
         MagnetGameActionSystem.LevelUnloadedStarted -= DestroyVFXs;
         MagnetGameActionSystem.OnMetalCollected -= OnMetalCollected;
     }
@@ -38,32 +32,6 @@ public class MagnetismManager : Singleton<MagnetismManager>
     
     string GetKey(GameObject go1, GameObject go2) => $"{go1.GetInstanceID()%1000}{go2.GetInstanceID()%1000}";
 
-    private async void WaitAndSetVFXs()
-    {
-        await UniTask.Delay(1000);
-        vfxDictionary = new Dictionary<string, MagnetVFX>();
-        MagnetVFX vfx;
-        foreach (Magnet magnet1 in SceneMagnets)
-        {
-            foreach (Magnet magnet2 in SceneMagnets)
-            {
-                if (magnet1 != magnet2)
-                {
-                    vfx=Instantiate(vfxPrefab);
-                    vfx.SetTargets(magnet1.transform,magnet2.transform);
-                    vfxDictionary.Add(GetKey(magnet1.gameObject,magnet2.gameObject),vfx);
-                }
-            }   
-            
-            foreach (Metal metal in SceneMetals)
-            {
-                vfx=Instantiate(vfxPrefab);
-                vfx.SetTargets(magnet1.transform, metal.transform);
-                vfxDictionary.Add(GetKey(magnet1.gameObject,metal.gameObject),vfx);
-            }   
-        }
-    }
-    
     private void OnMetalCollected(Metal metal)
     {
         foreach (Magnet magnet in SceneMagnets)
@@ -141,8 +109,10 @@ public class MagnetismManager : Singleton<MagnetismManager>
             return;
         }
 
-        magnetVFX.Pos2.position = Vector3.Lerp(magnetVFX.Pos1.position, magnetVFX.Pos4.position, .33f) + Vector3.down + Vector3.right;
-        magnetVFX.Pos3.position = Vector3.Lerp(magnetVFX.Pos1.position, magnetVFX.Pos4.position, .66f) + Vector3.up * 5 + Vector3.left;
+        var position1 = magnetVFX.Pos1.position;
+        var position2 = magnetVFX.Pos4.position;
+        magnetVFX.Pos2.position = Vector3.Lerp(position1, position2, .33f) + Vector3.down + Vector3.right;
+        magnetVFX.Pos3.position = Vector3.Lerp(position1, position2, .66f) + Vector3.up * 5 + Vector3.left;
     }
     
     void ApplyMagneticForceToMagnet(Magnet magnet1, Magnet magnet2)
@@ -190,7 +160,7 @@ public class MagnetismManager : Singleton<MagnetismManager>
             SetVFXActive(key, false);
             return;
         }
-        Vector3 heading = magnet.CurrentPosition - metal.CurrentPosition;//(15,0,0)  10,10,10   5,5,5
+        Vector3 heading = magnet.CurrentPosition - metal.CurrentPosition;
         float distance = Mathf.Max(heading.magnitude,1);
 
         if (distance > magnet.MaxDistance)
