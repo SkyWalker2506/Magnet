@@ -7,7 +7,7 @@ public class MagnetVFX : MonoBehaviour
     [SerializeField] public Transform Pos2;
     [SerializeField] public Transform Pos3;
     [SerializeField] public Transform Pos4;
-    public bool IsActive => vfx.activeSelf;
+    public bool IsActive => vfx!=null&& vfx.activeSelf;
     private void Awake()
     {
         SetActive(false);

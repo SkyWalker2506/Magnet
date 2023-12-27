@@ -8,19 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Metal
-  m_Shader: {fileID: 4800000, guid: e88aeddd2ef1f934d805981244872e27, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8d2bb70cbf9db8d4da26e15b26e74248, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _HALFTONESHAPE_CUSTOM
   - _RECEIVE_SHADOWS_OFF
-  m_InvalidKeywords:
-  - _ENVIRONMENTREFLECTIONS_OFF
-  - _RECEIVESHADOWS_OFF
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2050
+  m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
@@ -206,7 +203,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.07058824, g: 0.5294118, b: 0.6039216, a: 1}
-    - _Color: {r: 0.25222495, g: 0.45459002, b: 0.49056596, a: 1}
+    - _Color: {r: 0.07058821, g: 0.5294118, b: 0.6039216, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}

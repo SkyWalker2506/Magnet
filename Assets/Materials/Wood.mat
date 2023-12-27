@@ -8,20 +8,17 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Wood
-  m_Shader: {fileID: 4800000, guid: e88aeddd2ef1f934d805981244872e27, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8d2bb70cbf9db8d4da26e15b26e74248, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _HALFTONESHAPE_STRIPE
-  - _RIMLIGHTING_ON
+  - _RECEIVE_SHADOWS_OFF
   - _SPECULAR_COLOR
-  m_InvalidKeywords:
-  - _ENVIRONMENTREFLECTIONS_OFF
-  - _SPECULARHIGHLIGHTS_OFF
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2050
+  m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
@@ -177,7 +174,7 @@ Material:
     - _OverrideShadowColor: 0
     - _Parallax: 0.02
     - _QueueOffset: 0
-    - _ReceiveShadows: 1
+    - _ReceiveShadows: 0
     - _RimEnabled: 1
     - _RimLightAlign: 0.05
     - _RimLightSmoothness: 0
@@ -207,7 +204,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.7882353, g: 0.40392157, b: 0.28627452, a: 1}
-    - _Color: {r: 0.093444206, g: 0.6886792, b: 0, a: 1}
+    - _Color: {r: 0.7882353, g: 0.40392154, b: 0.2862745, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}

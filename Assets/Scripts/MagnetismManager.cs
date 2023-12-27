@@ -54,7 +54,7 @@ public class MagnetismManager : Singleton<MagnetismManager>
         {
             vfxDictionary[key].SetActive(false);
             await UniTask.Yield(PlayerLoopTiming.LastFixedUpdate);
-            if (vfxDictionary.ContainsKey(key))
+            if (vfxDictionary.ContainsKey(key)&&vfxDictionary[key]!=null)
             {
                 if (vfxDictionary[key].gameObject)
                 {

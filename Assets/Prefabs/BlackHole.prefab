@@ -119,12 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d877cc633bf05ee4fae1be9f8e12088e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  metalLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  otherLayers:
-    serializedVersion: 2
-    m_Bits: 3895
   Type: 0
   isForCollecting: 1
 --- !u!1001 &1495778966087154188

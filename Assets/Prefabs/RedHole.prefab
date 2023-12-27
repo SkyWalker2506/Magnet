@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 787cb25de3401c44b939f2599cda764c, type: 2}
+  - {fileID: 2100000, guid: 90b80ca2d9d0b0e4bbfbf25285551c28, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,12 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d877cc633bf05ee4fae1be9f8e12088e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  metalLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  otherLayers:
-    serializedVersion: 2
-    m_Bits: 3895
   Type: 1
   isForCollecting: 1
 --- !u!82 &-2368324726157629261
@@ -250,7 +244,7 @@ PrefabInstance:
     - target: {fileID: 7113898318064009352, guid: 3a29718f5673842ceb9ab22faeba7c2d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.69
       objectReference: {fileID: 0}
     - target: {fileID: 7113898318064009352, guid: 3a29718f5673842ceb9ab22faeba7c2d,
         type: 3}
