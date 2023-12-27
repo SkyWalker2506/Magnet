@@ -57,8 +57,8 @@ public class Metal : MonoBehaviour, ICollectable,IRespawnable
         if (collision.transform.CompareTag("Player"))
         {
             UseMagnetism = false;
-            MetalRB.velocity = Vector3.zero;
-            collision.rigidbody.velocity = Vector3.zero;
+            MetalRB.linearVelocity = Vector3.zero;
+            collision.rigidbody.linearVelocity = Vector3.zero;
         }
     }
 
@@ -85,7 +85,7 @@ public class Metal : MonoBehaviour, ICollectable,IRespawnable
     public void Respawn()
     {
         transform.position = InitialSpawnPosition;
-        MetalRB.velocity = Vector3.zero;
+        MetalRB.linearVelocity = Vector3.zero;
     }
 }
 

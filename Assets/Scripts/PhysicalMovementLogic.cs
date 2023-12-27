@@ -17,11 +17,11 @@ public class PhysicalMovementLogic :IMovementLogic
     {
         if (!IsMovable)
         {
-            rigidbody.velocity = Vector3.zero;
+            rigidbody.linearVelocity = Vector3.zero;
         }
         else
         {
-            rigidbody.velocity = MoveDirection * (Time.fixedDeltaTime * MovementSpeed);
+            rigidbody.linearVelocity = MoveDirection * (Time.fixedDeltaTime * MovementSpeed);
         }
     }
 
