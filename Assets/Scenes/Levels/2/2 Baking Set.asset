@@ -131,7 +131,7 @@ MonoBehaviour:
     cellList: 0000000004000000020000000600000001000000050000000300000007000000
   cellSharedDataAsset:
     m_AssetGUID: 48a522a2fb0c9486981b47e2856007a9
-    m_StreamableAssetPath: APVStreamingAssets/dd406454eb1c94a75beeaf30b8314e56/48a522a2fb0c9486981b47e2856007a9.bytes
+    m_StreamableAssetPath: APVStreamingAssets\dd406454eb1c94a75beeaf30b8314e56\48a522a2fb0c9486981b47e2856007a9.bytes
     m_ElementSize: 8192
     m_StreamableCellDescs:
       m_Keys: 0000000004000000020000000600000001000000050000000300000007000000
@@ -160,7 +160,7 @@ MonoBehaviour:
     - sceneHash: -613220527
       cellDataAsset:
         m_AssetGUID: 4588e6518ea4e4cd1a79b55d56c38d9e
-        m_StreamableAssetPath: APVStreamingAssets/dd406454eb1c94a75beeaf30b8314e56/4588e6518ea4e4cd1a79b55d56c38d9e.bytes
+        m_StreamableAssetPath: APVStreamingAssets\dd406454eb1c94a75beeaf30b8314e56\4588e6518ea4e4cd1a79b55d56c38d9e.bytes
         m_ElementSize: 131072
         m_StreamableCellDescs:
           m_Keys: 0000000004000000020000000600000001000000050000000300000007000000
@@ -184,7 +184,7 @@ MonoBehaviour:
         m_Asset: {fileID: 0}
       cellOptionalDataAsset:
         m_AssetGUID: 02356288bcd3049cc9f0b1dbb3234090
-        m_StreamableAssetPath: APVStreamingAssets/dd406454eb1c94a75beeaf30b8314e56/02356288bcd3049cc9f0b1dbb3234090.bytes
+        m_StreamableAssetPath: APVStreamingAssets\dd406454eb1c94a75beeaf30b8314e56\02356288bcd3049cc9f0b1dbb3234090.bytes
         m_ElementSize: 131072
         m_StreamableCellDescs:
           m_Keys: 0000000004000000020000000600000001000000050000000300000007000000
@@ -208,7 +208,7 @@ MonoBehaviour:
         m_Asset: {fileID: 0}
   cellBricksDataAsset:
     m_AssetGUID: 1861f9abbdda649d89e94cfd59ef393e
-    m_StreamableAssetPath: APVStreamingAssets/dd406454eb1c94a75beeaf30b8314e56/1861f9abbdda649d89e94cfd59ef393e.bytes
+    m_StreamableAssetPath: APVStreamingAssets\dd406454eb1c94a75beeaf30b8314e56\1861f9abbdda649d89e94cfd59ef393e.bytes
     m_ElementSize: 16
     m_StreamableCellDescs:
       m_Keys: 0000000004000000020000000600000001000000050000000300000007000000
@@ -232,7 +232,7 @@ MonoBehaviour:
     m_Asset: {fileID: 0}
   cellSupportDataAsset:
     m_AssetGUID: 738ebc8760ea948559beeabdb05c27d3
-    m_StreamableAssetPath: APVStreamingAssets/dd406454eb1c94a75beeaf30b8314e56/738ebc8760ea948559beeabdb05c27d3.bytes
+    m_StreamableAssetPath: APVStreamingAssets\dd406454eb1c94a75beeaf30b8314e56\738ebc8760ea948559beeabdb05c27d3.bytes
     m_ElementSize: 262144
     m_StreamableCellDescs:
       m_Keys: 0000000004000000020000000600000001000000050000000300000007000000
