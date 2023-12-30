@@ -123,7 +123,7 @@ public class MagnetismManager : Singleton<MagnetismManager>
         if (magnet1.PolarizationValue == magnet2.PolarizationValue)
             polarizationMultiplier = -1;
         Vector3 heading = magnet1.CurrentPosition - magnet2.CurrentPosition;
-        float distance = Mathf.Max(heading.magnitude,1);
+        float distance = Mathf.Max(heading.magnitude,1.5f);
         Vector3 direction = heading / distance;
         float forceToApply= permeability* magnet1.MagneticCharge*magnet2.MagneticCharge/(4*Mathf.PI*Mathf.Pow(distance,2))*Time.fixedDeltaTime*100;
         Vector3 directedForce = direction * (polarizationMultiplier * forceToApply);
@@ -161,7 +161,7 @@ public class MagnetismManager : Singleton<MagnetismManager>
             return;
         }
         Vector3 heading = magnet.CurrentPosition - metal.CurrentPosition;
-        float distance = Mathf.Max(heading.magnitude,1);
+        float distance = Mathf.Max(heading.magnitude,1.5f);
 
         if (distance > magnet.MaxDistance)
         {
