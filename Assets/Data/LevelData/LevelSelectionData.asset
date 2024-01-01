@@ -17,4 +17,149 @@ MonoBehaviour:
     <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
       type: 3}
     <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 1
+  - <Level>k__BackingField: 2
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 1
+    <StarCount>k__BackingField: 2
+  - <Level>k__BackingField: 3
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 4
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 5
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 6
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 7
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 8
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 9
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 10
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 11
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 12
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 13
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 14
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 15
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 16
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 17
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 18
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 19
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 20
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 21
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 22
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 23
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 24
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 25
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 26
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 27
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 28
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 29
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
+    <StarCount>k__BackingField: 0
+  - <Level>k__BackingField: 30
+    <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
+      type: 3}
+    <IsUnlocked>k__BackingField: 0
     <StarCount>k__BackingField: 0
