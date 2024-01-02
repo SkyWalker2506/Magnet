@@ -319,7 +319,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 346039912}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1294412623}
+        m_TargetAssemblyTypeName: LevelSelection.LevelSelectionController, Assembly-CSharp
+        m_MethodName: OpenLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &346039912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,7 +1005,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1406855082}
   m_HandleRect: {fileID: 1406855081}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1576,6 +1588,7 @@ GameObject:
   - component: {fileID: 1821911871}
   - component: {fileID: 1821911873}
   - component: {fileID: 1821911872}
+  - component: {fileID: 1821911874}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -1621,7 +1634,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 175
+  m_Spacing: 15
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -1643,6 +1656,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
   m_VerticalFit: 1
+--- !u!114 &1821911874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821911870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a142ac964deadb4992fa7bb51b714e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedLevel: 0
+  scrollBar: {fileID: 1107953617}
 --- !u!1 &1878627762
 GameObject:
   m_ObjectHideFlags: 0
