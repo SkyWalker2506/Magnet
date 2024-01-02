@@ -34,7 +34,10 @@ namespace LevelSelection
         }
         public void OpenLevel()
         {
-            
+            Debug.Log(levelSelectionModel.SelectedLevel);
+            LevelManager.CurrentLevel = levelSelectionModel.SelectedLevel;
+            SceneManager.LoadScene(1);
+
         }
     }
 
