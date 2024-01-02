@@ -5,10 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    string currentLevelName = string.Empty;
-    [SerializeField]
-    List<GameObject> systemPrefabs;
-    List<GameObject> instancedSystemPrefabs;
+
+    [SerializeField] List<GameObject> systemPrefabs;
+    List<GameObject> instancedSystemPrefabs = new List<GameObject>();
     
     void Start()
     {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using VInspector;
 
@@ -76,5 +77,9 @@ public class LevelManager : Singleton<LevelManager>
     {
         CurrentLevel = level;
     }
-    
+
+    public void OpenHome()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

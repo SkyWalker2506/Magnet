@@ -18,7 +18,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
         if (IsInitialized)
         {
-            Debug.LogError("[Singleton] Trying to instantiate a second of a singleton class.");
+            Debug.LogWarning("[Singleton] Trying to instantiate a second of a singleton class.");
             Destroy(gameObject);
         }
         else

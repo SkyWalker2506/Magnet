@@ -63,6 +63,10 @@ public class UIManager : Singleton<UIManager>
     {
         LevelManager.Instance.RestartLevel();
     }
+    public void ReturnHome()
+    {
+        LevelManager.Instance.OpenHome();
+    }
 
     void LevelFailed()
     {
