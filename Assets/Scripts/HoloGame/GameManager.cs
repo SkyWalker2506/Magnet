@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
 
     [SerializeField] List<GameObject> systemPrefabs;
@@ -38,9 +36,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    protected override void OnDestroy()
+    protected void OnDestroy()
     {
-        base.OnDestroy();
         instancedSystemPrefabs.ForEach(Destroy);
         instancedSystemPrefabs.Clear();
     }
