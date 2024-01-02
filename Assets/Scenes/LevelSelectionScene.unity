@@ -1005,7 +1005,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1406855082}
   m_HandleRect: {fileID: 1406855081}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelViewPrefab: {fileID: -3485756246471113537, guid: 34b1375dfd378db4bb277e6bcaaba00b,
     type: 3}
-  levelViewHolder: {fileID: 1821911871}
+  scrollRect: {fileID: 1668137252}
 --- !u!114 &1294412623
 MonoBehaviour:
   m_ObjectHideFlags: 0

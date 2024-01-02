@@ -18,11 +18,8 @@ namespace LevelSelection
         {
             levelData = data;
             levelImage.sprite = data.LevelSprite;
-            for (int i = 0; i < starImages.Length; i++)
-            {
-                starImages[i].DOFade(0, 0);
-            }
-            
+            OnUnfocus();
+
             levelInfoText.SetText(data.IsUnlocked ? data.Level.ToString() : "LOCKED");
             lockedPanel.SetActive(data.IsUnlocked ? false : true);
             unlockedPanel.SetActive(data.IsUnlocked ? true : false);
@@ -30,11 +27,29 @@ namespace LevelSelection
 
         public void OnFocus()
         {
+            
+            AnimateStarAlphas();
+            
+        }
+
+        public void OnUnfocus()
+        {
+            foreach (var starImage in starImages)
+            {
+                starImage.color = new Color(1, 1, 1, 0);
+            }
+
+        }
+
+        public void AnimateStarAlphas()
+        {
+            Sequence sequence = DOTween.Sequence();
+            sequence.AppendInterval(0.5f); // Wait for 1 second
             for (int i = 0; i < levelData.StarCount; i++)
             {
-                if(LevelViewSwipe.Instance.selectedLevel == i)
-                    starImages[i].DOFade(1, 1);
+                sequence.Append(starImages[i].DOFade(1, 0.5f));
             }
+            sequence.Play();
         }
     }
 }

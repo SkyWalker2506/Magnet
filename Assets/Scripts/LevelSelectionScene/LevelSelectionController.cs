@@ -15,9 +15,23 @@ namespace LevelSelection
 
         private void Awake()
         {
+            levelSelectionModel.LoadData();
+            levelSelectionModel.SelectedLevel = 0;
             levelSelectionView.CreateLevelViews(levelSelectionModel.LevelDatas);
         }
 
+        private IEnumerator Start()
+        {
+            yield return new WaitForEndOfFrame();
+            levelSelectionView.CreateScrollStepLogic();
+
+        }
+
+        private void Update()
+        {
+            
+            levelSelectionView.UpdateScrollLogic(ref levelSelectionModel.SelectedLevel);
+        }
         public void OpenLevel()
         {
             
