@@ -13,24 +13,30 @@ public class ScrollStepLogic
     private float[] pos;
     private LevelView[] levelViews;
 
+    float distance;
+    float halfDistance;
+
     public ScrollStepLogic(ScrollRect scrollRect, bool useHorizontal)
     {
         scrollBar = useHorizontal ? scrollRect.horizontalScrollbar : scrollRect.verticalScrollbar;
         content = scrollRect.content;
         levelViews = content.GetComponentsInChildren<LevelView>();
-        scrollBar.value = 0;
-    }
+        scrollBar.value = 0.15f;
 
-    public void Update(ref int selectedLevel)
-    {
         pos = new float[content.childCount];
-        float distance = 1f / (pos.Length - 1f);
-        float halfDistance = distance * 0.5f;
+        distance = 1f / (pos.Length - 1f);
+        halfDistance = distance * 0.5f;
 
         for (int i = 0; i < pos.Length; i++)
         {
-            pos[i] = distance * i;
+            pos[i] = distance * (i+.05f);
         }
+
+    }
+
+
+    public void Update(ref int selectedLevel)
+    {
 
         if (Input.GetMouseButton(0))
         {
@@ -42,7 +48,8 @@ public class ScrollStepLogic
             {
                 if (IsScrollPosInRange(scrollPos, pos[i], halfDistance))
                 {
-                    scrollBar.value = Mathf.Lerp(scrollBar.value, pos[i], 0.1f);
+                    scrollBar.value = pos[i];
+                    //Mathf.Lerp(scrollBar.value, pos[i], 0.1f);
                 }
             }
         }
