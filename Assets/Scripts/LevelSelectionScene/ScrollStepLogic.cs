@@ -24,12 +24,12 @@ public class ScrollStepLogic
         scrollBar.value = 0.15f;
 
         pos = new float[content.childCount];
-        distance = 1f / (pos.Length - 1f);
+        distance = (1.0072f / (pos.Length - 1f));
         halfDistance = distance * 0.5f;
 
         for (int i = 0; i < pos.Length; i++)
         {
-            pos[i] = distance * (i+.05f);
+            pos[i] = distance * (i);
         }
 
     }
@@ -48,8 +48,17 @@ public class ScrollStepLogic
             {
                 if (IsScrollPosInRange(scrollPos, pos[i], halfDistance))
                 {
-                    scrollBar.value = pos[i];
-                    //Mathf.Lerp(scrollBar.value, pos[i], 0.1f);
+                        scrollBar.value = pos[i];
+                /*
+                    if(IsScrollPosInRange(scrollPos, pos[i], halfDistance*.5f))
+                    {
+                        scrollBar.value = pos[i];
+                    }
+                    else
+                    {
+                        Mathf.Lerp(scrollBar.value, pos[i], 0.51f);
+                    }
+                    */
                 }
             }
         }
@@ -60,7 +69,6 @@ public class ScrollStepLogic
             float scale = 0.8f;
             if (IsScrollPosInRange(scrollPos, pos[i], halfDistance))
             {
-                
                 
                 scale = 1f;
                 if (selectedLevel != level)

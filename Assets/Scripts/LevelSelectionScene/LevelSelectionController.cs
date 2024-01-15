@@ -29,7 +29,6 @@ namespace LevelSelection
 
         private void Update()
         {
-            
             levelSelectionView.UpdateScrollLogic(ref levelSelectionModel.SelectedLevel);
         }
         public void OpenLevel()
