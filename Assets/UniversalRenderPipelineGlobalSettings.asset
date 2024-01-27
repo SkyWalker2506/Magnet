@@ -51,19 +51,10 @@ MonoBehaviour:
       - rid: 5648136956113584143
       - rid: 5648136956113584144
       - rid: 5648136956113584145
+      - rid: 4364999121765924894
+      - rid: 4364999121765924895
     m_RuntimeSettings:
-      m_List:
-      - rid: 5648136956113584128
-      - rid: 5648136956113584131
-      - rid: 5648136956113584132
-      - rid: 5648136956113584134
-      - rid: 5648136956113584135
-      - rid: 5648136956113584136
-      - rid: 5648136956113584138
-      - rid: 5648136956113584141
-      - rid: 5648136956113584142
-      - rid: 5648136956113584143
-      - rid: 5648136956113584144
+      m_List: []
   m_AssetVersion: 7
   m_ObsoleteDefaultVolumeProfile: {fileID: 0}
   m_RenderingLayerNames:
@@ -94,6 +85,30 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 4364999121765924894
+      type: {class: ProbeVolumeBakingResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
+      data:
+        m_Version: 1
+        dilationShader: {fileID: 7200000, guid: 6bb382f7de370af41b775f54182e491d,
+          type: 3}
+        subdivideSceneCS: {fileID: 7200000, guid: bb86f1f0af829fd45b2ebddda1245c22,
+          type: 3}
+        voxelizeSceneShader: {fileID: 4800000, guid: c8b6a681c7b4e2e4785ffab093907f9e,
+          type: 3}
+        traceVirtualOffsetCS: {fileID: 7200000, guid: 805f10d263aac4b4098c0279cd37a4f3,
+          type: 3}
+        traceVirtualOffsetRT: {fileID: 4807578003741378534, guid: b60511f4aa1443f4d8c0b18f4fec92f4,
+          type: 3}
+        skyOcclusionCS: {fileID: 7200000, guid: 798f52ec82fa04048a12826bbbbcf7b4,
+          type: 3}
+        skyOcclusionRT: {fileID: 4807578003741378534, guid: dfaf42b38dd001f49a72d8102b709f29,
+          type: 3}
+    - rid: 4364999121765924895
+      type: {class: RenderGraphGlobalSettings, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
+      data:
+        m_version: 0
+        m_EnableCompilationCaching: 1
+        m_EnableValidityChecks: 1
     - rid: 5648136956113584128
       type: {class: UniversalRenderPipelineRuntimeShaders, ns: UnityEngine.Rendering.Universal,
         asm: Unity.RenderPipelines.Universal.Runtime}
