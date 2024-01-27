@@ -151,10 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1d7f4f76cc465459974dcd2719b3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PolarizationValue: 1
-  MagneticCharge: 2000
+  PolarizationValue: 0
+  MagneticCharge: 2500
   MagnetRB: {fileID: 2504080871356411398}
-  MaxDistance: 5.5
+  MaxDistance: 10
 --- !u!114 &2504080871356411395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerView: {fileID: 917863469634621951}
-  movementSpeed: 500
-  touchDeadPercentage: 1
+  movementSpeed: 200
+  touchDeadPercentage: 10
 --- !u!114 &917863469634621951
 MonoBehaviour:
   m_ObjectHideFlags: 0
