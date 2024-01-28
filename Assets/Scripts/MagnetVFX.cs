@@ -16,7 +16,7 @@ public class MagnetVFX : MonoBehaviour
     public void SetTargets(Transform target1, Transform target2)
     {
         Pos1.parent = target1;
-        Pos1.localPosition = Vector3.zero;
+        Pos1.localPosition = Vector3.up;
         Pos4.parent = target2;
         Pos4.localPosition = Vector3.zero;
     }

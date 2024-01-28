@@ -111,8 +111,8 @@ public class MagnetismManager : Singleton<MagnetismManager>
 
         var position1 = magnetVFX.Pos1.position;
         var position2 = magnetVFX.Pos4.position;
-        magnetVFX.Pos2.position = Vector3.Lerp(position1, position2, .33f) + Vector3.down + Vector3.right;
-        magnetVFX.Pos3.position = Vector3.Lerp(position1, position2, .66f) + Vector3.up * 5 + Vector3.left;
+        magnetVFX.Pos2.position = Vector3.Lerp(position1, position2, .33f) + Vector3.down + Vector3.right*2;
+        magnetVFX.Pos3.position = Vector3.Lerp(position1, position2, .66f) + Vector3.up * 5 + Vector3.left*2;
     }
     
     void ApplyMagneticForceToMagnet(Magnet magnet1, Magnet magnet2)
