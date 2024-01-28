@@ -172,7 +172,14 @@ public class MagnetismManager : Singleton<MagnetismManager>
         Vector3 direction = heading / distance;
         float forceToApply = permeability * magnet.MagneticCharge * metal.MagneticCharge / (4 * Mathf.PI * Mathf.Pow(distance, 2))*Time.fixedDeltaTime*100;;
         metal.ApplyMagneticForce(direction* forceToApply);
-        SetVFXActive(key, true);
+        if (distance > 2)
+        {
+            SetVFXActive(key, true);
+        }
+        else
+        {
+            SetVFXActive(key, false);
+        }
     }
 
     public void AddMagnet(Magnet addedMagnet)
