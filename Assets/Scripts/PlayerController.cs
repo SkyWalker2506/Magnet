@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,9 +23,13 @@ public class PlayerController : MonoBehaviour
         movementLogic = new PhysicalMovementLogic(movementSpeed, GetComponent<Rigidbody>());
         listenMovement = true;
         magnetismToggleInput = new MultiClick(2,.5f);
+    }
+
+    private void Start()
+    {
         SetMagnetism(true);
     }
-    
+
     void OnEnable()
     {
         MagnetGameActionSystem.OnLevelFailed += DisablePlayerController;
