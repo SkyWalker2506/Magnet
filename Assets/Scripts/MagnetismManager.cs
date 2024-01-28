@@ -123,7 +123,7 @@ public class MagnetismManager : Singleton<MagnetismManager>
         if (magnet1.PolarizationValue == magnet2.PolarizationValue)
             polarizationMultiplier = -1;
         Vector3 heading = magnet1.CurrentPosition - magnet2.CurrentPosition;
-        float distance = Mathf.Max(heading.magnitude,1.5f);
+        float distance = Mathf.Max(heading.magnitude,2f);
         Vector3 direction = heading / distance;
         float forceToApply= permeability* magnet1.MagneticCharge*magnet2.MagneticCharge/(4*Mathf.PI*Mathf.Pow(distance,2))*Time.fixedDeltaTime*100;
         Vector3 directedForce = direction * (polarizationMultiplier * forceToApply);
@@ -132,7 +132,7 @@ public class MagnetismManager : Singleton<MagnetismManager>
         if (distance < magnet1.MaxDistance )
         {
             magnet2.ApplyMagneticForce(directedForce);
-            SetVFXActive(key, true);
+            SetVFXActive(key, distance > 2);
         }
         else
         {
@@ -144,7 +144,7 @@ public class MagnetismManager : Singleton<MagnetismManager>
         if (distance < magnet2.MaxDistance )
         {
             magnet1.ApplyMagneticForce(-directedForce);
-            SetVFXActive(key, true);
+            SetVFXActive(key, distance > 2);
         }
         else
         {
@@ -161,7 +161,7 @@ public class MagnetismManager : Singleton<MagnetismManager>
             return;
         }
         Vector3 heading = magnet.CurrentPosition - metal.CurrentPosition;
-        float distance = Mathf.Max(heading.magnitude,1.5f);
+        float distance = Mathf.Max(heading.magnitude,2f);
 
         if (distance > magnet.MaxDistance)
         {
@@ -172,14 +172,7 @@ public class MagnetismManager : Singleton<MagnetismManager>
         Vector3 direction = heading / distance;
         float forceToApply = permeability * magnet.MagneticCharge * metal.MagneticCharge / (4 * Mathf.PI * Mathf.Pow(distance, 2))*Time.fixedDeltaTime*100;;
         metal.ApplyMagneticForce(direction* forceToApply);
-        if (distance > 2)
-        {
-            SetVFXActive(key, true);
-        }
-        else
-        {
-            SetVFXActive(key, false);
-        }
+        SetVFXActive(key, distance > 2);
     }
 
     public void AddMagnet(Magnet addedMagnet)
