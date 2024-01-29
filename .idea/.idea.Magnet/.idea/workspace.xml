@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb2d952d-7ca7-4bda-a895-72f8535e15a3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Magnet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Magnet/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MagnetismManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MagnetismManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +87,7 @@
       <updated>1706458119106</updated>
       <workItem from="1706458121711" duration="510000" />
       <workItem from="1706458781224" duration="995000" />
-      <workItem from="1706483541708" duration="1535000" />
+      <workItem from="1706483541708" duration="1887000" />
     </task>
     <servers />
   </component>
