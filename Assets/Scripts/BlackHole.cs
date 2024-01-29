@@ -31,13 +31,14 @@ public class BlackHole : MonoBehaviour
             if (Type == metal.Type && isForCollecting)
             {
                 MagnetGameActionSystem.ObjectCollected?.Invoke(dropObjects.Count);
-                AudioManager.PlayDropToHoleClip();
+                //AudioManager.PlayDropToHoleClip();
+                SoundManager.Instance.PlaySfx("DropToHoleClip");
             }
             else if (Type != metal.Type)
             {
                 MagnetGameActionSystem.OnLevelFailed?.Invoke();
-                AudioManager.PlayDropToLavaClip();
-
+                //AudioManager.PlayDropToLavaClip();
+                SoundManager.Instance.PlaySfx("DropToLavaClip");
             }
         }
     }

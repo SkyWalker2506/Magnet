@@ -48,7 +48,8 @@ public class Metal : MonoBehaviour, ICollectable,IRespawnable
     {
         if (collision.transform.CompareTag("Player"))
         {
-            AudioManager.PlayMetalHitClip();
+            //AudioManager.PlayMetalHitClip();
+            SoundManager.Instance.PlaySfx("MetalHitClip");
         }
     }
 
