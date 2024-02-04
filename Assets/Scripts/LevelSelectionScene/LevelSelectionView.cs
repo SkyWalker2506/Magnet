@@ -9,6 +9,7 @@ namespace LevelSelection
         [SerializeField] private LevelView levelViewPrefab;
         [SerializeField] private ScrollRect scrollRect; 
         ScrollStepLogic scrollStepLogic;
+        [SerializeField] GameObject comingSoonItemPrefab;
 
        public void UpdateScrollLogic(ref int selectedLevel)
         {
@@ -34,6 +35,8 @@ namespace LevelSelection
 
                 objPrefab.SetLevel(levelData[i]);
             }
+            //var comingSoonPrefab = Instantiate(comingSoonItemPrefab);
+            //comingSoonPrefab.transform.SetParent(scrollRect.content, false);
         }
 
         private void ClearLevelViewHolder()
