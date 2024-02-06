@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using LevelSelection;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -47,6 +48,17 @@ public class GameManager : MonoBehaviour
         if (collected == MagnetismManager.Instance.SceneMetals.Count)
         {
             MagnetGameActionSystem.OnLevelCompleted?.Invoke();
+
+            float endTime = TimeManager.Instance.LeftTime;
+            int currentLevel = LevelManager.CurrentLevel-1;
+
+            if (endTime >= 40)
+                LevelSelectionView.Instance.levelData[currentLevel].StarCount = 3;
+            if (endTime >= 20 && endTime <= 39)
+                LevelSelectionView.Instance.levelData[currentLevel].StarCount = 2;
+            if (endTime >= 1 && endTime <= 19)
+                LevelSelectionView.Instance.levelData[currentLevel].StarCount = 1;
+
         }
     }
     

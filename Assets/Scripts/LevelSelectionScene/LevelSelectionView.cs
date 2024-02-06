@@ -5,13 +5,19 @@ namespace LevelSelection
 {
     public class LevelSelectionView : MonoBehaviour
     {
-        LevelModel[] levelData;
+        public static LevelSelectionView Instance;
+
+        public LevelModel[] levelData;
         [SerializeField] private LevelView levelViewPrefab;
         [SerializeField] private ScrollRect scrollRect; 
         ScrollStepLogic scrollStepLogic;
         [SerializeField] GameObject comingSoonItemPrefab;
 
-       public void UpdateScrollLogic(ref int selectedLevel)
+        private void Awake()
+        {
+            Instance = this;
+        }
+        public void UpdateScrollLogic(ref int selectedLevel)
         {
             if (scrollStepLogic == null)
             {

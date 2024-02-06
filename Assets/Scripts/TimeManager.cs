@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class TimeManager :MonoBehaviour
 {
+    public static TimeManager Instance; 
+
     [SerializeField] private int levelTime = 120;
-    private float leftTime;
+    public float LeftTime;
     public static Action<int> OnGameCountDownChanged;
     private bool isCountdownOn;
     private int lastSentCountdown;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void OnEnable()
     {
         MagnetGameActionSystem.LevelStarted += (x) => StartCountdown();
@@ -30,13 +37,13 @@ public class TimeManager :MonoBehaviour
             return;
         }
 
-        leftTime -= Time.deltaTime;
-        if (lastSentCountdown > leftTime)
+        LeftTime -= Time.deltaTime;
+        if (lastSentCountdown > LeftTime)
         {
             SendGameCountdownChanged();            
         }
 
-        if (leftTime <= 0)
+        if (LeftTime <= 0)
         {
             isCountdownOn = false;
             MagnetGameActionSystem.OnLevelFailed?.Invoke();
@@ -45,14 +52,14 @@ public class TimeManager :MonoBehaviour
 
     private void StartCountdown()
     {
-        leftTime = levelTime;
+        LeftTime = levelTime;
         SendGameCountdownChanged();
         isCountdownOn = true;
     }
 
     void SendGameCountdownChanged()
     {
-        lastSentCountdown = (int)leftTime;
+        lastSentCountdown = (int)LeftTime;
         OnGameCountDownChanged?.Invoke(lastSentCountdown);
     }
 

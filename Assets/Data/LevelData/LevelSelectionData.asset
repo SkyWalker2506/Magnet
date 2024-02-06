@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17a5b59e4ece1e40a69ad34ebd639a9, type: 3}
   m_Name: LevelSelectionData
   m_EditorClassIdentifier: 
-  SelectedLevel: 4
+  SelectedLevel: 0
   LevelDatas:
   - <Level>k__BackingField: 1
     <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
@@ -23,7 +23,7 @@ MonoBehaviour:
     <LevelSprite>k__BackingField: {fileID: 21300000, guid: c6b10e9f773666a458e214beeae3f4a3,
       type: 3}
     <IsUnlocked>k__BackingField: 1
-    <StarCount>k__BackingField: 2
+    <StarCount>k__BackingField: 1
   - <Level>k__BackingField: 3
     <LevelSprite>k__BackingField: {fileID: 21300000, guid: 29c0d0e933ec37647b6f84a103fe7eaf,
       type: 3}
