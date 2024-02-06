@@ -31,7 +31,19 @@ public class ScrollStepLogic
         {
             pos[i] = distance * (i);
         }
-
+        int levelCount = LevelSelectionView.Instance.levelData.Length;
+        int currentLevel = LevelManager.CurrentLevel;
+        
+        for (int i = 0; i < levelCount; i++)
+        {
+            bool isUnlocked = LevelSelectionView.Instance.levelData[i].IsUnlocked;
+            if (isUnlocked == false)
+            {
+                currentLevel = i;
+                scrollPos = pos[currentLevel-1];
+                return;
+            }
+        }
     }
 
 

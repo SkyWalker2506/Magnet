@@ -18,26 +18,26 @@ MonoBehaviour:
     <LevelSprite>k__BackingField: {fileID: 21300000, guid: 861e0c23370e94343b3c9953636e66d6,
       type: 3}
     <IsUnlocked>k__BackingField: 1
-    <StarCount>k__BackingField: 1
+    <StarCount>k__BackingField: 3
   - <Level>k__BackingField: 2
     <LevelSprite>k__BackingField: {fileID: 21300000, guid: c6b10e9f773666a458e214beeae3f4a3,
       type: 3}
     <IsUnlocked>k__BackingField: 1
-    <StarCount>k__BackingField: 1
+    <StarCount>k__BackingField: 3
   - <Level>k__BackingField: 3
     <LevelSprite>k__BackingField: {fileID: 21300000, guid: 29c0d0e933ec37647b6f84a103fe7eaf,
       type: 3}
     <IsUnlocked>k__BackingField: 1
-    <StarCount>k__BackingField: 2
+    <StarCount>k__BackingField: 0
   - <Level>k__BackingField: 4
     <LevelSprite>k__BackingField: {fileID: 21300000, guid: a10a7c6c94e3fa14b949526b72afa6df,
       type: 3}
-    <IsUnlocked>k__BackingField: 1
+    <IsUnlocked>k__BackingField: 0
     <StarCount>k__BackingField: 1
   - <Level>k__BackingField: 5
     <LevelSprite>k__BackingField: {fileID: 21300000, guid: b88b38434603dd44298e0877e88b1d8f,
       type: 3}
-    <IsUnlocked>k__BackingField: 1
+    <IsUnlocked>k__BackingField: 0
     <StarCount>k__BackingField: 3
   - <Level>k__BackingField: 6
     <LevelSprite>k__BackingField: {fileID: 21300000, guid: 50eb6af7fc6391f49b54f4e35f25bcca,

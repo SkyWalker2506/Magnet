@@ -1217,6 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7ab511992afb42bce2967cf6a170e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelData: []
   levelViewPrefab: {fileID: -3485756246471113537, guid: 34b1375dfd378db4bb277e6bcaaba00b,
     type: 3}
   scrollRect: {fileID: 1668137252}
@@ -2508,7 +2509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2031139873
 RectTransform:
   m_ObjectHideFlags: 0

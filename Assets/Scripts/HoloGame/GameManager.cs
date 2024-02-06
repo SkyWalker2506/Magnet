@@ -50,12 +50,14 @@ public class GameManager : MonoBehaviour
             MagnetGameActionSystem.OnLevelCompleted?.Invoke();
 
             float endTime = TimeManager.Instance.LeftTime;
-            int currentLevel = LevelManager.CurrentLevel-1;
+            int currentLevel = LevelManager.CurrentLevel;
+            LevelSelectionView.Instance.levelData[currentLevel].IsUnlocked = true;
+
 
             if (endTime >= 40)
-                LevelSelectionView.Instance.levelData[currentLevel].StarCount = 3;
+                LevelSelectionView.Instance.levelData[currentLevel-1].StarCount = 3;
             if (endTime >= 20 && endTime <= 39)
-                LevelSelectionView.Instance.levelData[currentLevel].StarCount = 2;
+                LevelSelectionView.Instance.levelData[currentLevel-1].StarCount = 2;
             if (endTime >= 1 && endTime <= 19)
                 LevelSelectionView.Instance.levelData[currentLevel].StarCount = 1;
 
