@@ -53,14 +53,13 @@ namespace EditorTools
         }
         
         private Object metalPrefab;
-        [MenuItem("GameTestHelperTool/ReplaceMetals %r")] 
         void ReplaceMetals()
         {
             EditorGUILayout.BeginHorizontal();
             EditorGUIUtility.labelWidth = 70;   
 
             metalPrefab = EditorGUILayout.ObjectField( metalPrefab,typeof(GameObject),false);
-            var sceneMetals = FindObjectsOfType<Metal>();
+            var sceneMetals = Object.FindObjectsByType<Metal>(FindObjectsInactive.Exclude);
             Event e = Event.current;
             if (GUILayout.Button("Replace to Metal Prefabs")|| (e.type == EventType.KeyDown &&  e.keyCode == KeyCode.R && e.command))
             {

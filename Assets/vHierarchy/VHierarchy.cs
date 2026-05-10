@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+#pragma warning disable 0618
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -559,7 +560,36 @@ namespace VHierarchy
         static void UpdateExpandedIdsList()
         {
             if (!Application.isPlaying)
-                expandedIds = hierarchyWindow?.GetFieldValue("m_SceneHierarchy").GetFieldValue("m_TreeViewState").GetPropertyValue<List<int>>("expandedIDs");
+            {
+                try
+                {
+                    var expandedIdsValue = hierarchyWindow?.GetFieldValue("m_SceneHierarchy").GetFieldValue("m_TreeViewState").GetPropertyValue("expandedIDs");
+
+                    if (expandedIdsValue is List<int> ids)
+                    {
+                        expandedIds = ids;
+                    }
+                    else
+                    {
+                        expandedIds = new List<int>();
+
+                        if (expandedIdsValue is IEnumerable enumerable)
+                        {
+                            foreach (var id in enumerable)
+                            {
+                                if (id is int intId)
+                                    expandedIds.Add(intId);
+                                else if (id != null && int.TryParse(id.ToString(), out var parsedId))
+                                    expandedIds.Add(parsedId);
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                    expandedIds = new List<int>();
+                }
+            }
 
             EditorApplication.delayCall -= UpdateExpandedIdsList;
             EditorApplication.delayCall += UpdateExpandedIdsList;
