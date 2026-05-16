@@ -35,8 +35,8 @@ namespace LevelSelection
         {
             Debug.Log(levelSelectionModel.SelectedLevel);
             LevelManager.CurrentLevel = levelSelectionModel.SelectedLevel;
+            LevelManager.ShouldLoadLevelOnBoot = true;
             SceneManager.LoadScene(1);
-
         }
     }
 

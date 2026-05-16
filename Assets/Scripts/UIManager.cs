@@ -37,11 +37,21 @@ public class UIManager : Singleton<UIManager>
 
     private void SetLevel(int level)
     {
+        gameObject.SetActive(true);
         LevelInOut.SetTrigger("LevelIn");
         GameUI.SetActive(true);
         FailedUI.SetActive(false);
         levelText.text = level.ToString();
         SetProgressBar(0);
+    }
+
+    public void HideForMenu()
+    {
+        if (GameUI != null)
+            GameUI.SetActive(false);
+        if (FailedUI != null)
+            FailedUI.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     private void SetTime(int time)
@@ -61,10 +71,17 @@ public class UIManager : Singleton<UIManager>
     }
     public void RestartLevel()
     {
+        if (!LevelManager.IsInitialized)
+            return;
+
         LevelManager.Instance.RestartLevel();
     }
+
     public void ReturnHome()
     {
+        if (!LevelManager.IsInitialized)
+            return;
+
         LevelManager.Instance.OpenHome();
     }
 

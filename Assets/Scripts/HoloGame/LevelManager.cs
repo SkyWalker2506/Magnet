@@ -14,14 +14,24 @@ public class LevelManager : Singleton<LevelManager>
         set { PlayerPrefs.SetInt("LastPassedLevel", value); }
     }
 
+    /// <summary>Set by level selection before loading BootScene; Boot loads the level only when this is true.</summary>
+    public static bool ShouldLoadLevelOnBoot { get; set; }
+
 
     private void OnEnable()
     {
-        MagnetGameActionSystem.OnLevelCompleted += ()=>Invoke("OpenNextLevel", LevelPassTime);
+        MagnetGameActionSystem.OnLevelCompleted += OnLevelCompleted;
     }
+
     private void OnDisable()
     {
-        MagnetGameActionSystem.OnLevelCompleted -=  ()=>Invoke("OpenNextLevel", LevelPassTime);
+        CancelInvoke(nameof(OpenNextLevel));
+        MagnetGameActionSystem.OnLevelCompleted -= OnLevelCompleted;
+    }
+
+    private void OnLevelCompleted()
+    {
+        Invoke(nameof(OpenNextLevel), LevelPassTime);
     }
 
     public void OpenNextLevel()
@@ -35,6 +45,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void RestartLevel()
     {
+        CancelInvoke(nameof(OpenNextLevel));
         UnLoadLevel(CurrentLevel.ToString());
         LoadLevel(CurrentLevel.ToString());
     }
@@ -80,6 +91,20 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OpenHome()
     {
+        CancelInvoke(nameof(OpenNextLevel));
+        ShouldLoadLevelOnBoot = false;
+
+        if (UIManager.IsInitialized)
+            UIManager.Instance.HideForMenu();
+
+        MagnetGameActionSystem.LevelUnloadedStarted?.Invoke();
         SceneManager.LoadScene(0);
+    }
+
+    protected override void OnDestroy()
+    {
+        CancelInvoke(nameof(OpenNextLevel));
+        MagnetGameActionSystem.OnLevelCompleted -= OnLevelCompleted;
+        base.OnDestroy();
     }
 }

@@ -49,6 +49,7 @@ public class ScrollStepLogic
 
     public void Update(ref int selectedLevel)
     {
+        HandleKeyboardInput();
 
         if (Input.GetMouseButton(0))
         {
@@ -105,6 +106,48 @@ public class ScrollStepLogic
     public bool IsScrollPosInRange(float scrollPos, float pos, float halfDistance)
     {
         return (scrollPos < pos + halfDistance && scrollPos > pos - halfDistance);
-            
+    }
+
+    void HandleKeyboardInput()
+    {
+        int direction = 0;
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            direction = -1;
+        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            direction = 1;
+
+        if (direction == 0)
+            return;
+
+        int currentIndex = GetCurrentIndex();
+        int newIndex = Mathf.Clamp(currentIndex + direction, 0, pos.Length - 1);
+        if (newIndex == currentIndex)
+            return;
+
+        scrollPos = pos[newIndex];
+        scrollBar.value = pos[newIndex];
+    }
+
+    int GetCurrentIndex()
+    {
+        for (int i = 0; i < pos.Length; i++)
+        {
+            if (IsScrollPosInRange(scrollPos, pos[i], halfDistance))
+                return i;
+        }
+
+        int closest = 0;
+        float minDistance = float.MaxValue;
+        for (int i = 0; i < pos.Length; i++)
+        {
+            float distanceToPos = Mathf.Abs(scrollPos - pos[i]);
+            if (distanceToPos < minDistance)
+            {
+                minDistance = distanceToPos;
+                closest = i;
+            }
+        }
+
+        return closest;
     }
 }

@@ -18,17 +18,21 @@ public class TimeManager :MonoBehaviour
     }
     private void OnEnable()
     {
-        MagnetGameActionSystem.LevelStarted += (x) => StartCountdown();
-        MagnetGameActionSystem.OnLevelCompleted +=  StopCountdown;
-        MagnetGameActionSystem.OnLevelFailed +=  StopCountdown;
+        MagnetGameActionSystem.LevelStarted += HandleLevelStarted;
+        MagnetGameActionSystem.OnLevelCompleted += StopCountdown;
+        MagnetGameActionSystem.OnLevelFailed += StopCountdown;
+        MagnetGameActionSystem.LevelUnloadedStarted += StopCountdown;
     }
 
     private void OnDisable()
     {
-        MagnetGameActionSystem.LevelStarted -= (x) => StartCountdown();
-        MagnetGameActionSystem.OnLevelCompleted -=  StopCountdown;
-        MagnetGameActionSystem.OnLevelFailed -=  StopCountdown;
+        MagnetGameActionSystem.LevelStarted -= HandleLevelStarted;
+        MagnetGameActionSystem.OnLevelCompleted -= StopCountdown;
+        MagnetGameActionSystem.OnLevelFailed -= StopCountdown;
+        MagnetGameActionSystem.LevelUnloadedStarted -= StopCountdown;
     }
+
+    private void HandleLevelStarted(int _) => StartCountdown();
 
     private void Update()
     {
