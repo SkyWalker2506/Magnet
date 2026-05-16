@@ -1,0 +1,19 @@
+.hint-root {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.hint-label {
+    font-size: 64px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: middle-center;
+    white-space: normal;
+    max-width: 80%;
+    -unity-font-definition: url("project://database/Assets/Layer%20Lab/GUI%20Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular%20Outline_Extended%20ASCII_120%20SDF.asset");
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}

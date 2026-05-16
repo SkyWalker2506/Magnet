@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static event Action OnPlayerFirstMoved;
 
     [SerializeField] private PlayerView playerView;
     [Tooltip("dokunulan magnetin hedef dokunuşa ulaşma hızı")]
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
     Vector3 screenToFloorPosition;
     private Vector2 touchStartPos;
     private bool listenMovement=true;
+    private bool firstMoveFired;
     private Magnet magnet;
     Camera mainCamera;
     private IMovementLogic movementLogic;
@@ -57,37 +59,46 @@ public class PlayerController : MonoBehaviour
             mainCamera = Camera.main;
             if (!mainCamera) return;
         }
-        
+
         if (Input.GetMouseButtonDown(0))
         {
-            movementLogic.IsMovable = true;
-            touchStartPos =  mainCamera.ScreenToViewportPoint(Input.mousePosition);
-        }
-        
-        if (Input.GetMouseButton(0))
-        {
-            movementLogic.IsMovable = true;
-        }
-        
-        if (Input.GetMouseButtonUp(0))
-        {
-            movementLogic.IsMovable = false;
+            touchStartPos = mainCamera.ScreenToViewportPoint(Input.mousePosition);
         }
 
-        if (!movementLogic.IsMovable)
+        float kh = Input.GetAxisRaw("Horizontal");
+        float kv = Input.GetAxisRaw("Vertical");
+        bool keyboardActive = Mathf.Abs(kh) > 0.01f || Mathf.Abs(kv) > 0.01f;
+        if (keyboardActive)
         {
+            Vector2 dir = new Vector2(kh, kv).normalized;
+            movementLogic.IsMovable = true;
+            movementLogic.MoveDirection = new Vector3(-dir.y, 0f, dir.x);
+            NotifyFirstMove();
             return;
         }
-        
-        Vector2 moveVector = 100*((Vector2)mainCamera.ScreenToViewportPoint(Input.mousePosition) - touchStartPos);
-        Debug.Log(Input.mousePosition);
-        Debug.Log(touchStartPos);
-        movementLogic.IsMovable = !(moveVector.magnitude < touchDeadPercentage);
 
-        if (movementLogic.IsMovable)
+        if (Input.GetMouseButton(0))
         {
-            movementLogic.MoveDirection = new Vector3(-moveVector.normalized.y,0,moveVector.normalized.x);
+            Vector2 moveVector = 100 * ((Vector2)mainCamera.ScreenToViewportPoint(Input.mousePosition) - touchStartPos);
+            if (moveVector.magnitude < touchDeadPercentage)
+            {
+                movementLogic.IsMovable = false;
+                return;
+            }
+            movementLogic.IsMovable = true;
+            movementLogic.MoveDirection = new Vector3(-moveVector.normalized.y, 0f, moveVector.normalized.x);
+            NotifyFirstMove();
+            return;
         }
+
+        movementLogic.IsMovable = false;
+    }
+
+    private void NotifyFirstMove()
+    {
+        if (firstMoveFired) return;
+        firstMoveFired = true;
+        OnPlayerFirstMoved?.Invoke();
     }
 
     private void FixedUpdate()

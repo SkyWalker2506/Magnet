@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 388844177660480948, guid: 3a96e18d1a7c84dac8b96c4307263ad6,
         type: 3}
       propertyPath: systemPrefabs.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 388844177660480948, guid: 3a96e18d1a7c84dac8b96c4307263ad6,
         type: 3}
@@ -172,7 +172,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'systemPrefabs.Array.data[9]'
       value: 
-      objectReference: {fileID: 2497497123682453153, guid: 8aa574a80cd01cd41859d78b8808e32e,
+      objectReference: {fileID: 648624995729485557, guid: ca0b6b83650f4fd6b67c076d4a5601c6,
         type: 3}
     - target: {fileID: 388844177660480948, guid: 3a96e18d1a7c84dac8b96c4307263ad6,
         type: 3}

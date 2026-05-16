@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/TutorialOverlay.uss" />
+    <ui:VisualElement name="hint-root" class="hint-root" picking-mode="Ignore">
+        <ui:Label name="hint-label" class="hint-label" picking-mode="Ignore" text="Use WASD or arrows to move&#10;or use your mouse" />
+    </ui:VisualElement>
+</ui:UXML>
