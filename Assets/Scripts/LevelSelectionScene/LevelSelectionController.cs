@@ -15,7 +15,6 @@ namespace LevelSelection
 
         private void Awake()
         {
-            levelSelectionModel.LoadData();
             levelSelectionModel.SelectedLevel = 0;
             levelSelectionView.CreateLevelViews(levelSelectionModel.LevelDatas);
         }

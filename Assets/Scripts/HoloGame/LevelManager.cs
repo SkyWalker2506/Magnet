@@ -14,6 +14,12 @@ public class LevelManager : Singleton<LevelManager>
         set { PlayerPrefs.SetInt("LastPassedLevel", value); }
     }
 
+    public static int HighestUnlockedLevel
+    {
+        get { return PlayerPrefs.GetInt("HighestUnlockedLevel", 1); }
+        set { PlayerPrefs.SetInt("HighestUnlockedLevel", value); }
+    }
+
     /// <summary>Set by level selection before loading BootScene; Boot loads the level only when this is true.</summary>
     public static bool ShouldLoadLevelOnBoot { get; set; }
 
@@ -37,9 +43,12 @@ public class LevelManager : Singleton<LevelManager>
     public void OpenNextLevel()
     {
         UnLoadLevel(CurrentLevel.ToString());
-            CurrentLevel++;
+        CurrentLevel++;
         if (CurrentLevel > maxLevel)
             CurrentLevel = 1;
+        if (CurrentLevel > HighestUnlockedLevel)
+            HighestUnlockedLevel = CurrentLevel;
+        PlayerPrefs.Save();
         LoadLevel(CurrentLevel.ToString());
     }
 

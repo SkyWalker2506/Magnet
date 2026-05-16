@@ -51,7 +51,6 @@ public class UIManager : Singleton<UIManager>
             GameUI.SetActive(false);
         if (FailedUI != null)
             FailedUI.SetActive(false);
-        gameObject.SetActive(false);
     }
 
     private void SetTime(int time)

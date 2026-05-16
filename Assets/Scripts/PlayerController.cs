@@ -1,10 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static event Action OnPlayerFirstMoved;
-
     [SerializeField] private PlayerView playerView;
     [Tooltip("dokunulan magnetin hedef dokunuşa ulaşma hızı")]
     [SerializeField] float movementSpeed = 200;
@@ -13,18 +10,19 @@ public class PlayerController : MonoBehaviour
     Vector3 screenToFloorPosition;
     private Vector2 touchStartPos;
     private bool listenMovement=true;
-    private bool firstMoveFired;
     private Magnet magnet;
     Camera mainCamera;
     private IMovementLogic movementLogic;
     private IInput magnetismToggleInput;
-        
+    private IInput magnetismToggleKeyInput;
+
     void Awake()
     {
         magnet = GetComponent<Magnet>();
         movementLogic = new PhysicalMovementLogic(movementSpeed, GetComponent<Rigidbody>());
         listenMovement = true;
         magnetismToggleInput = new MultiClick(2,.5f);
+        magnetismToggleKeyInput = new KeyDownInput(KeyCode.Space);
     }
 
     private void Start()
@@ -36,12 +34,14 @@ public class PlayerController : MonoBehaviour
     {
         MagnetGameActionSystem.OnLevelFailed += DisablePlayerController;
         magnetismToggleInput.OnInputCalled += ToggleMagnet;
+        magnetismToggleKeyInput.OnInputCalled += ToggleMagnet;
     }
 
     void OnDisable()
     {
         MagnetGameActionSystem.OnLevelFailed -= DisablePlayerController;
         magnetismToggleInput.OnInputCalled -= ToggleMagnet;
+        magnetismToggleKeyInput.OnInputCalled -= ToggleMagnet;
     }
     
     void DisablePlayerController()
@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         magnetismToggleInput.Update();
+        magnetismToggleKeyInput.Update();
         if (!listenMovement) return;
         if (!mainCamera)
         {
@@ -73,7 +74,6 @@ public class PlayerController : MonoBehaviour
             Vector2 dir = new Vector2(kh, kv).normalized;
             movementLogic.IsMovable = true;
             movementLogic.MoveDirection = new Vector3(-dir.y, 0f, dir.x);
-            NotifyFirstMove();
             return;
         }
 
@@ -87,18 +87,10 @@ public class PlayerController : MonoBehaviour
             }
             movementLogic.IsMovable = true;
             movementLogic.MoveDirection = new Vector3(-moveVector.normalized.y, 0f, moveVector.normalized.x);
-            NotifyFirstMove();
             return;
         }
 
         movementLogic.IsMovable = false;
-    }
-
-    private void NotifyFirstMove()
-    {
-        if (firstMoveFired) return;
-        firstMoveFired = true;
-        OnPlayerFirstMoved?.Invoke();
     }
 
     private void FixedUpdate()

@@ -8,27 +8,19 @@ namespace LevelSelection
     {
         [field: SerializeField] public int Level { get; set; }
         [field: SerializeField] public Sprite LevelSprite { get; set; }
-        [field: SerializeField] public bool IsUnlocked { get; set; }
-        [field: SerializeField] public int StarCount { get; set; }
 
-        private string saveKey => $"Level {Level} Save Key";
+        public bool IsUnlocked => Level <= LevelManager.HighestUnlockedLevel;
 
-        public void SaveData()
+        private string starsKey => $"Level {Level} Stars";
+
+        public int StarCount
         {
-            PlayerPrefs.SetString(saveKey, JsonUtility.ToJson(this));
-        }
-        public void LoadData()
-        {
-            if(PlayerPrefs.HasKey(saveKey))
+            get => PlayerPrefs.GetInt(starsKey, 0);
+            set
             {
-                var json = PlayerPrefs.GetString(saveKey);
-                var data = JsonUtility.FromJson<LevelModel>(json);
-                Level = data.Level;
-                LevelSprite = data.LevelSprite;
-                IsUnlocked = data.IsUnlocked;
-                StarCount = data.StarCount;
+                PlayerPrefs.SetInt(starsKey, value);
+                PlayerPrefs.Save();
             }
-
         }
     }
 }

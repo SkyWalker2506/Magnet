@@ -7,14 +7,6 @@ namespace LevelSelection
     {
         public int SelectedLevel;
         public LevelModel[] LevelDatas;
-
-        public void LoadData()
-        {
-            foreach (var levelData in LevelDatas) 
-            {
-                levelData.LoadData();
-            }
-        }
     }
 
 }

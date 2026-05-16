@@ -27,9 +27,10 @@ namespace LevelSelection
 
         public void OnFocus()
         {
-            
+            if (!levelData.IsUnlocked)
+                return;
+
             AnimateStarAlphas();
-            
         }
 
         public void OnUnfocus()
@@ -44,10 +45,10 @@ namespace LevelSelection
         public void AnimateStarAlphas()
         {
             Sequence sequence = DOTween.Sequence();
-            sequence.AppendInterval(0.5f); // Wait for 1 second
+            sequence.AppendInterval(0.1f);
             for (int i = 0; i < levelData.StarCount; i++)
             {
-                sequence.Append(starImages[i].DOFade(1, 0.5f));
+                sequence.Append(starImages[i].DOFade(1, 0.1f));
             }
             sequence.Play();
         }
