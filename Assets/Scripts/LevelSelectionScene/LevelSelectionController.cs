@@ -29,11 +29,14 @@ namespace LevelSelection
         private void Update()
         {
             levelSelectionView.UpdateScrollLogic(ref levelSelectionModel.SelectedLevel);
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+                OpenLevel();
         }
         public void OpenLevel()
         {
-            Debug.Log(levelSelectionModel.SelectedLevel);
-            LevelManager.CurrentLevel = levelSelectionModel.SelectedLevel;
+            int level = levelSelectionModel.SelectedLevel;
+            if (level <= 0 || level > LevelManager.HighestUnlockedLevel) return;
+            LevelManager.CurrentLevel = level;
             LevelManager.ShouldLoadLevelOnBoot = true;
             SceneManager.LoadScene(1);
         }

@@ -20,7 +20,7 @@ namespace LevelSelection
             levelImage.sprite = data.LevelSprite;
             OnUnfocus();
 
-            levelInfoText.SetText(data.IsUnlocked ? data.Level.ToString() : "LOCKED");
+            levelInfoText.SetText(data.IsUnlocked ? data.Level.ToString() : $"{data.Level}\nLOCKED");
             lockedPanel.SetActive(data.IsUnlocked ? false : true);
             unlockedPanel.SetActive(data.IsUnlocked ? true : false);
         }

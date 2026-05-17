@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,11 +12,14 @@ public class UIManager : Singleton<UIManager>
     public GameObject GameUI;
     public GameObject FailedUI;
 
+    int collectedCount;
+    int totalMetals;
+
     void OnEnable()
     {
         MagnetGameActionSystem.LevelStarted += SetLevel;
         TimeManager.OnGameCountDownChanged += SetTime;
-        MagnetGameActionSystem.ObjectCollected += SetProgressBar;
+        MagnetGameActionSystem.OnMetalCollected += OnMetalCollected;
         MagnetGameActionSystem.OnLevelCompleted += LevelCompleted;
         MagnetGameActionSystem.OnLevelFailed += LevelFailed;
     }
@@ -25,14 +28,14 @@ public class UIManager : Singleton<UIManager>
     {
         MagnetGameActionSystem.LevelStarted -= SetLevel;
         TimeManager.OnGameCountDownChanged -= SetTime;
-        MagnetGameActionSystem.ObjectCollected -= SetProgressBar;
+        MagnetGameActionSystem.OnMetalCollected -= OnMetalCollected;
         MagnetGameActionSystem.OnLevelCompleted -= LevelCompleted;
         MagnetGameActionSystem.OnLevelFailed -= LevelFailed;
     }
 
     private void Start()
     {
-        SetProgressBar(0);
+        RefreshProgressBar();
     }
 
     private void SetLevel(int level)
@@ -42,13 +45,15 @@ public class UIManager : Singleton<UIManager>
         GameUI.SetActive(true);
         FailedUI.SetActive(false);
         levelText.text = level.ToString();
-        SetProgressBar(0);
+        collectedCount = 0;
+        totalMetals = MagnetismManager.Instance != null
+            ? MagnetismManager.Instance.SceneMetals.Count
+            : 0;
+        RefreshProgressBar();
     }
 
     public void HideForMenu()
     {
-        if (GameUI != null)
-            GameUI.SetActive(false);
         if (FailedUI != null)
             FailedUI.SetActive(false);
     }
@@ -57,15 +62,20 @@ public class UIManager : Singleton<UIManager>
     {
         timeText.SetText(time.ToString());
     }
-    
-    private void SetProgressBar(int collected)
+
+    private void OnMetalCollected(Metal metal)
     {
-        LevelProgressBar.value = (float)collected / Mathf.Max(1,MagnetismManager.Instance.SceneMetals.Count);
+        collectedCount++;
+        RefreshProgressBar();
+    }
+
+    private void RefreshProgressBar()
+    {
+        LevelProgressBar.value = totalMetals > 0 ? (float)collectedCount / totalMetals : 0f;
     }
 
     void LevelCompleted()
     {
-        GameUI.SetActive(false);
         LevelInOut.SetTrigger("LevelOut");
     }
     public void RestartLevel()
@@ -86,7 +96,6 @@ public class UIManager : Singleton<UIManager>
 
     void LevelFailed()
     {
-        GameUI.SetActive(false);
         FailedUI.SetActive(true);
     }
 }
