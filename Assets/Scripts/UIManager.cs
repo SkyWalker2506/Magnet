@@ -64,16 +64,7 @@ public class UIManager : Singleton<UIManager>
     private void SetGameUIVisible(bool visible)
     {
         if (GameUI == null) return;
-        var canvas = GameUI.GetComponent<Canvas>();
-        if (canvas != null)
-        {
-            canvas.enabled = visible;
-            GameUI.SetActive(true);
-        }
-        else
-        {
-            GameUI.SetActive(visible);
-        }
+        GameUI.SetActive(visible);
     }
 
     private void SetTime(int time)

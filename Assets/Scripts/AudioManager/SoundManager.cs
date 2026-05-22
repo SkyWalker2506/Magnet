@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
 
     public Sound[] MusicSound, SfxSounds;
     public AudioSource MusicSource, SfxSource;
+    private string currentLoopName;
 
 
     private void Awake()
@@ -54,6 +55,35 @@ public class SoundManager : MonoBehaviour
         {
             SfxSource.PlayOneShot(s.Clip);
         }
+    }
+
+    public void PlaySfxLoop(string name)
+    {
+        if (SfxSource == null) return;
+        if (currentLoopName == name && SfxSource.isPlaying && SfxSource.loop && SfxSource.clip != null) return;
+
+        Sound s = System.Array.Find(SfxSounds, x => x.Name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("SfxLoop: " + name + " not found!");
+            return;
+        }
+
+        SfxSource.clip = s.Clip;
+        SfxSource.loop = true;
+        SfxSource.Play();
+        currentLoopName = name;
+    }
+
+    public void StopSfxLoop()
+    {
+        if (SfxSource != null)
+        {
+            SfxSource.Stop();
+            SfxSource.loop = false;
+            SfxSource.clip = null;
+        }
+        currentLoopName = null;
     }
 
     public void ToggleMusic()

@@ -6,9 +6,12 @@ public class MagnetismManager : Singleton<MagnetismManager>
 {
     public List<Magnet> SceneMagnets { get; private set; } = new List<Magnet>();
     public List<Metal> SceneMetals = new List<Metal>();
-    [SerializeField] private MagnetVFX vfxPrefab; 
+    [SerializeField] private MagnetVFX vfxPrefab;
+    [SerializeField] private string pullSfxLoopName = "MagnetPullLoop";
     private float permeability = 1;
-    private Dictionary<string, MagnetVFX> vfxDictionary = new Dictionary<string, MagnetVFX>(); 
+    private Dictionary<string, MagnetVFX> vfxDictionary = new Dictionary<string, MagnetVFX>();
+    private int activePullCount;
+    private bool isPullLoopPlaying;
 
     private void OnEnable()
     {
@@ -16,12 +19,6 @@ public class MagnetismManager : Singleton<MagnetismManager>
         MagnetGameActionSystem.OnMetalCollected += OnMetalCollected;
     }
     
-    private void OnDisable()
-    {
-        MagnetGameActionSystem.LevelUnloadedStarted -= DestroyVFXs;
-        MagnetGameActionSystem.OnMetalCollected -= OnMetalCollected;
-    }
-
     private void DestroyVFXs()
     {
         foreach (string key in vfxDictionary.Keys)
@@ -74,8 +71,39 @@ public class MagnetismManager : Singleton<MagnetismManager>
     }
     private void FixedUpdate()
     {
+        activePullCount = 0;
         ApplyMagneticForce();
         SetVFXPositions();
+        UpdatePullLoop();
+    }
+
+    private void UpdatePullLoop()
+    {
+        if (SoundManager.Instance == null) return;
+
+        if (activePullCount > 0 && !isPullLoopPlaying)
+        {
+            Debug.Log($"[MagnetismManager] PlaySfxLoop({pullSfxLoopName}) — activePullCount={activePullCount}");
+            SoundManager.Instance.PlaySfxLoop(pullSfxLoopName);
+            isPullLoopPlaying = true;
+        }
+        else if (activePullCount == 0 && isPullLoopPlaying)
+        {
+            Debug.Log("[MagnetismManager] StopSfxLoop");
+            SoundManager.Instance.StopSfxLoop();
+            isPullLoopPlaying = false;
+        }
+    }
+
+    private void OnDisable()
+    {
+        MagnetGameActionSystem.LevelUnloadedStarted -= DestroyVFXs;
+        MagnetGameActionSystem.OnMetalCollected -= OnMetalCollected;
+        if (isPullLoopPlaying && SoundManager.Instance != null)
+        {
+            SoundManager.Instance.StopSfxLoop();
+            isPullLoopPlaying = false;
+        }
     }
 
     private void ApplyMagneticForce()
@@ -173,6 +201,7 @@ public class MagnetismManager : Singleton<MagnetismManager>
         float forceToApply = permeability * magnet.MagneticCharge * metal.MagneticCharge / (4 * Mathf.PI * Mathf.Pow(distance, 2))*Time.fixedDeltaTime*100;;
         metal.ApplyMagneticForce(direction* forceToApply);
         SetVFXActive(key, distance > 2);
+        activePullCount++;
     }
 
     public void AddMagnet(Magnet addedMagnet)

@@ -178,6 +178,8 @@ MonoBehaviour:
   MusicSound:
   - Name: GameMusic
     Clip: {fileID: 8300000, guid: cd9cbabbef6a6ea47931a444b07c1fb2, type: 3}
+  - Name: MagnetPullLoop
+    Clip: {fileID: 8300000, guid: 1294dbfe00c167440ac882188af63dea, type: 3}
   SfxSounds:
   - Name: MetalHitClip
     Clip: {fileID: 8300000, guid: 526eb1e0c49bb214eb7e190681569476, type: 3}
