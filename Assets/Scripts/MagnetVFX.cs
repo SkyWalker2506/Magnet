@@ -9,18 +9,31 @@ public class MagnetVFX : MonoBehaviour
     [SerializeField] public Transform Pos4;
 
     [Header("WebGL-compatible Beam")]
-    [SerializeField, ColorUsage(true, true)] private Color beamColor = new Color(2.5f, 5f, 8f, 1f);
-    [SerializeField] private float beamWidth = 0.35f;
-    [SerializeField] private int beamSegments = 28;
+    [SerializeField, ColorUsage(true, true)] private Color beamColor = new Color(0.1f, 1.6f, 8f, 1f);
+    [SerializeField] private float beamWidth = 0.32f;
+    [SerializeField] private int beamSegments = 40;
+    [SerializeField] private float intensityBoost = 4f;
+
+    [Header("Electric Jitter")]
+    [SerializeField] private float jitterAmplitude = 0.35f;
+    [SerializeField] private float jitterFrequency = 6f;
+    [SerializeField] private float jitterSpeed = 14f;
+    [SerializeField] private float widthPulseAmount = 0.4f;
+    [SerializeField] private float widthPulseSpeed = 18f;
 
     private LineRenderer line;
+    private float noiseSeed;
+    private MaterialPropertyBlock mpb;
     private static Material sharedBeamMaterial;
+    private static readonly int IntensityID = Shader.PropertyToID("_Intensity");
+    private static readonly int ColorID = Shader.PropertyToID("_Color");
 
     public bool IsActive => line != null && line.enabled;
 
     private void Awake()
     {
         if (vfx != null) vfx.SetActive(false);
+        noiseSeed = Random.Range(0f, 1000f);
         EnsureLine();
         SetActive(false);
     }
@@ -46,6 +59,13 @@ public class MagnetVFX : MonoBehaviour
             line.positionCount = beamSegments + 1;
 
         Vector3 p0 = Pos1.position, p1 = Pos2.position, p2 = Pos3.position, p3 = Pos4.position;
+        Vector3 chord = p3 - p0;
+        Vector3 normal = Vector3.Cross(chord, Vector3.up);
+        if (normal.sqrMagnitude < 0.0001f) normal = Vector3.Cross(chord, Vector3.right);
+        normal.Normalize();
+        Vector3 binormal = Vector3.Cross(chord.normalized, normal);
+
+        float t0 = Time.time * jitterSpeed;
         for (int i = 0; i <= beamSegments; i++)
         {
             float t = (float)i / beamSegments;
@@ -54,8 +74,29 @@ public class MagnetVFX : MonoBehaviour
                           + 3f * u * u * t * p1
                           + 3f * u * t * t * p2
                           + t * t * t * p3;
+
+            float taper = Mathf.Sin(t * Mathf.PI);
+            float nx = (Mathf.PerlinNoise(t * jitterFrequency + noiseSeed, t0) - 0.5f) * 2f;
+            float ny = (Mathf.PerlinNoise(t * jitterFrequency + noiseSeed + 17.3f, t0 + 41.7f) - 0.5f) * 2f;
+            point += (normal * nx + binormal * ny) * (jitterAmplitude * taper);
+
             line.SetPosition(i, point);
         }
+
+        float pulse = 1f + Mathf.Sin(Time.time * widthPulseSpeed + noiseSeed) * widthPulseAmount * 0.5f;
+        float w = beamWidth * pulse;
+        line.startWidth = w;
+        line.endWidth = w;
+
+        float flicker = 0.85f + Mathf.PerlinNoise(noiseSeed, Time.time * 12f) * 0.6f;
+        line.startColor = Color.white;
+        line.endColor = Color.white;
+
+        if (mpb == null) mpb = new MaterialPropertyBlock();
+        line.GetPropertyBlock(mpb);
+        mpb.SetColor(ColorID, beamColor);
+        mpb.SetFloat(IntensityID, intensityBoost * flicker);
+        line.SetPropertyBlock(mpb);
     }
 
     private void EnsureLine()
@@ -83,15 +124,17 @@ public class MagnetVFX : MonoBehaviour
     private static Material GetSharedMaterial()
     {
         if (sharedBeamMaterial != null) return sharedBeamMaterial;
-        var shader = Shader.Find("Universal Render Pipeline/Particles/Unlit");
-        if (shader == null) shader = Shader.Find("Universal Render Pipeline/Unlit");
-        if (shader == null) shader = Shader.Find("Sprites/Default");
+        var shader = Resources.Load<Shader>("Shaders/MagnetBeam");
+        if (shader == null) shader = Shader.Find("Magnet/Beam");
+        if (shader == null)
+        {
+            shader = Shader.Find("Universal Render Pipeline/Unlit");
+            if (shader == null) shader = Shader.Find("Sprites/Default");
+            Debug.LogWarning("MagnetVFX: custom Magnet/Beam shader not found, falling back to " + (shader != null ? shader.name : "null"));
+        }
         sharedBeamMaterial = new Material(shader) { name = "MagnetBeamRuntime" };
-        if (sharedBeamMaterial.HasProperty("_Surface")) sharedBeamMaterial.SetFloat("_Surface", 1f);
-        if (sharedBeamMaterial.HasProperty("_Blend")) sharedBeamMaterial.SetFloat("_Blend", 1f);
-        if (sharedBeamMaterial.HasProperty("_SrcBlend")) sharedBeamMaterial.SetFloat("_SrcBlend", (float)UnityEngine.Rendering.BlendMode.SrcAlpha);
-        if (sharedBeamMaterial.HasProperty("_DstBlend")) sharedBeamMaterial.SetFloat("_DstBlend", (float)UnityEngine.Rendering.BlendMode.One);
-        if (sharedBeamMaterial.HasProperty("_ZWrite")) sharedBeamMaterial.SetFloat("_ZWrite", 0f);
+        if (sharedBeamMaterial.HasProperty("_Color")) sharedBeamMaterial.SetColor("_Color", new Color(0.1f, 1.6f, 8f, 1f));
+        if (sharedBeamMaterial.HasProperty("_Intensity")) sharedBeamMaterial.SetFloat("_Intensity", 1f);
         sharedBeamMaterial.renderQueue = 3000;
         return sharedBeamMaterial;
     }
