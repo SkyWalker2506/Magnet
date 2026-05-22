@@ -42,7 +42,7 @@ public class UIManager : Singleton<UIManager>
     {
         gameObject.SetActive(true);
         LevelInOut.SetTrigger("LevelIn");
-        GameUI.SetActive(true);
+        SetGameUIVisible(true);
         FailedUI.SetActive(false);
         levelText.text = level.ToString();
         collectedCount = 0;
@@ -54,8 +54,24 @@ public class UIManager : Singleton<UIManager>
 
     public void HideForMenu()
     {
+        SetGameUIVisible(false);
         if (FailedUI != null)
             FailedUI.SetActive(false);
+    }
+
+    private void SetGameUIVisible(bool visible)
+    {
+        if (GameUI == null) return;
+        var canvas = GameUI.GetComponent<Canvas>();
+        if (canvas != null)
+        {
+            canvas.enabled = visible;
+            GameUI.SetActive(true);
+        }
+        else
+        {
+            GameUI.SetActive(visible);
+        }
     }
 
     private void SetTime(int time)
