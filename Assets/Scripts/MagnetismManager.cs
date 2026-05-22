@@ -83,13 +83,11 @@ public class MagnetismManager : Singleton<MagnetismManager>
 
         if (activePullCount > 0 && !isPullLoopPlaying)
         {
-            Debug.Log($"[MagnetismManager] PlaySfxLoop({pullSfxLoopName}) — activePullCount={activePullCount}");
             SoundManager.Instance.PlaySfxLoop(pullSfxLoopName);
             isPullLoopPlaying = true;
         }
         else if (activePullCount == 0 && isPullLoopPlaying)
         {
-            Debug.Log("[MagnetismManager] StopSfxLoop");
             SoundManager.Instance.StopSfxLoop();
             isPullLoopPlaying = false;
         }

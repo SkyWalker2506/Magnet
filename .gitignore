@@ -72,3 +72,11 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 .claude/jcodemunch_indexed
+
+# Local WebGL test/dev artifacts
+/webgl
+/webgl-*.png
+/local-*.png
+/playgama-*.png
+/test-baseline-*.png
+/.playwright-mcp/

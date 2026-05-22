@@ -48,8 +48,9 @@ public class MagnetVFX : MonoBehaviour
 
     public void SetActive(bool isActive)
     {
-        EnsureLine();
-        line.enabled = isActive;
+        if (this == null) return;
+        if (line == null) EnsureLine();
+        if (line != null) line.enabled = isActive;
     }
 
     private void LateUpdate()
