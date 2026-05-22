@@ -74,7 +74,6 @@ public class Metal : MonoBehaviour, ICollectable,IRespawnable
         MetalRB.isKinematic = true;
         OnCollected?.Invoke();
         UseMagnetism= false;
-        MagnetGameActionSystem.OnMetalCollected?.Invoke(this);
     }
 
     public void ApplyMagneticForce(Vector3 forceToApply)

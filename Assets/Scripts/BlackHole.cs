@@ -31,6 +31,7 @@ public class BlackHole : MonoBehaviour
             if (Type == metal.Type && isForCollecting)
             {
                 MagnetGameActionSystem.ObjectCollected?.Invoke(dropObjects.Count);
+                MagnetGameActionSystem.OnMetalCollected?.Invoke(metal);
                 //AudioManager.PlayDropToHoleClip();
                 SoundManager.Instance.PlaySfx("DropToHoleClip");
             }
