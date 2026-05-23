@@ -1,3 +1,146 @@
-// Minimal placeholder — Bridge SDK auto-initializes via its WebGL template JS.
-// We are not currently invoking any Bridge.* API to isolate a recursion bug
-// observed in Unity 6 + Bridge 1.30.0 when calling Bridge.platform.SendMessage.
+using System;
+using UnityEngine;
+#if UNITY_WEBGL
+using Playgama;
+using Playgama.Modules.Platform;
+using Playgama.Modules.Game;
+using Playgama.Modules.Advertisement;
+#endif
+
+public class PlaygamaIntegration : MonoBehaviour
+{
+#if UNITY_WEBGL
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    private static void Bootstrap()
+    {
+        if (FindFirstObjectByType<PlaygamaIntegration>() != null) return;
+        var go = new GameObject("PlaygamaIntegration");
+        DontDestroyOnLoad(go);
+        go.AddComponent<PlaygamaIntegration>();
+    }
+#endif
+
+    private bool subscribedBridgeEvents;
+
+    private void Start()
+    {
+        TrySendMessage(PlatformMessageProxy.GameReady);
+
+        MagnetGameActionSystem.LevelStarted += OnLevelStarted;
+        MagnetGameActionSystem.OnLevelCompleted += OnLevelCompleted;
+        MagnetGameActionSystem.OnLevelFailed += OnLevelFailed;
+
+#if UNITY_WEBGL
+        try
+        {
+            if (Bridge.game != null)
+            {
+                Bridge.game.visibilityStateChanged += OnVisibilityChanged;
+                subscribedBridgeEvents = true;
+            }
+            if (Bridge.advertisement != null)
+            {
+                Bridge.advertisement.interstitialStateChanged += OnInterstitialChanged;
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"[Playgama] Bridge event subscribe failed: {e.Message}");
+        }
+#endif
+    }
+
+    private void OnDestroy()
+    {
+        MagnetGameActionSystem.LevelStarted -= OnLevelStarted;
+        MagnetGameActionSystem.OnLevelCompleted -= OnLevelCompleted;
+        MagnetGameActionSystem.OnLevelFailed -= OnLevelFailed;
+
+#if UNITY_WEBGL
+        if (!subscribedBridgeEvents) return;
+        try
+        {
+            if (Bridge.game != null) Bridge.game.visibilityStateChanged -= OnVisibilityChanged;
+            if (Bridge.advertisement != null) Bridge.advertisement.interstitialStateChanged -= OnInterstitialChanged;
+        }
+        catch { }
+#endif
+    }
+
+    private void OnLevelStarted(int level) => TrySendMessage(PlatformMessageProxy.LevelStarted);
+
+    private void OnLevelCompleted()
+    {
+        TrySendMessage(PlatformMessageProxy.LevelCompleted);
+        if (LevelManager.IsInitialized && LevelManager.CurrentLevel > 1)
+            TryShowInterstitial();
+    }
+
+    private void OnLevelFailed() => TrySendMessage(PlatformMessageProxy.LevelFailed);
+
+#if UNITY_WEBGL
+    private void OnVisibilityChanged(VisibilityState state)
+    {
+        bool hidden = state == VisibilityState.Hidden;
+        AudioListener.pause = hidden;
+    }
+
+    private void OnInterstitialChanged(InterstitialState state)
+    {
+        AudioListener.pause = state == InterstitialState.Opened || state == InterstitialState.Loading;
+    }
+#endif
+
+    private static void TrySendMessage(PlatformMessageProxy msg)
+    {
+#if UNITY_WEBGL
+        try
+        {
+            if (Bridge.platform == null) return;
+            Bridge.platform.SendMessage(ToBridge(msg));
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"[Playgama] SendMessage({msg}) failed: {e.Message}");
+        }
+#endif
+    }
+
+    private static void TryShowInterstitial()
+    {
+#if UNITY_WEBGL
+        try
+        {
+            if (Bridge.advertisement == null) return;
+            if (!Bridge.advertisement.isInterstitialSupported) return;
+            Bridge.advertisement.ShowInterstitial("level_complete");
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"[Playgama] ShowInterstitial failed: {e.Message}");
+        }
+#endif
+    }
+
+#if UNITY_WEBGL
+    private static PlatformMessage ToBridge(PlatformMessageProxy msg)
+    {
+        switch (msg)
+        {
+            case PlatformMessageProxy.GameReady: return PlatformMessage.GameReady;
+            case PlatformMessageProxy.LevelStarted: return PlatformMessage.LevelStarted;
+            case PlatformMessageProxy.LevelCompleted: return PlatformMessage.LevelCompleted;
+            case PlatformMessageProxy.LevelFailed: return PlatformMessage.LevelFailed;
+            default: return PlatformMessage.GameReady;
+        }
+    }
+#endif
+
+    private enum PlatformMessageProxy
+    {
+        GameReady,
+        LevelStarted,
+        LevelCompleted,
+        LevelFailed
+    }
+}
