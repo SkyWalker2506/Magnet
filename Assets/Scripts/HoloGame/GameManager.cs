@@ -101,10 +101,10 @@ public class GameManager : MonoBehaviour
         else return;
 
         string key = $"Level {LevelManager.CurrentLevel} Stars";
-        if (stars > PlayerPrefs.GetInt(key, 0))
+        if (stars > SaveService.GetInt(key, 0))
         {
-            PlayerPrefs.SetInt(key, stars);
-            PlayerPrefs.Save();
+            SaveService.SetInt(key, stars);
+            SaveService.Save();
         }
     }
     

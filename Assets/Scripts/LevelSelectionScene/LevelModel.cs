@@ -15,11 +15,11 @@ namespace LevelSelection
 
         public int StarCount
         {
-            get => PlayerPrefs.GetInt(starsKey, 0);
+            get => SaveService.GetInt(starsKey, 0);
             set
             {
-                PlayerPrefs.SetInt(starsKey, value);
-                PlayerPrefs.Save();
+                SaveService.SetInt(starsKey, value);
+                SaveService.Save();
             }
         }
     }

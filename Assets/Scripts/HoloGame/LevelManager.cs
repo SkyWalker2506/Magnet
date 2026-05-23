@@ -10,14 +10,14 @@ public class LevelManager : Singleton<LevelManager>
     public static readonly float LevelPassTime = 3.5f;
     public static int CurrentLevel
     {
-        get { return PlayerPrefs.GetInt("LastPassedLevel", 1); }
-        set { PlayerPrefs.SetInt("LastPassedLevel", value); }
+        get { return SaveService.GetInt("LastPassedLevel", 1); }
+        set { SaveService.SetInt("LastPassedLevel", value); }
     }
 
     public static int HighestUnlockedLevel
     {
-        get { return PlayerPrefs.GetInt("HighestUnlockedLevel", 1); }
-        set { PlayerPrefs.SetInt("HighestUnlockedLevel", value); }
+        get { return SaveService.GetInt("HighestUnlockedLevel", 1); }
+        set { SaveService.SetInt("HighestUnlockedLevel", value); }
     }
 
     /// <summary>Set by level selection before loading BootScene; Boot loads the level only when this is true.</summary>
@@ -48,7 +48,7 @@ public class LevelManager : Singleton<LevelManager>
             CurrentLevel = 1;
         if (CurrentLevel > HighestUnlockedLevel)
             HighestUnlockedLevel = CurrentLevel;
-        PlayerPrefs.Save();
+        SaveService.Save();
         LoadLevel(CurrentLevel.ToString());
     }
 

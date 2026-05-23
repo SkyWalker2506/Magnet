@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 #if UNITY_WEBGL
 using Playgama;
@@ -20,10 +21,19 @@ public class PlaygamaIntegration : MonoBehaviour
     }
 #endif
 
+    private const float PreloadTimeoutSeconds = 2f;
     private bool subscribedBridgeEvents;
 
-    private void Start()
+    private IEnumerator Start()
     {
+        SaveService.StartPreload();
+        float waited = 0f;
+        while (!SaveService.IsPreloadComplete && waited < PreloadTimeoutSeconds)
+        {
+            waited += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
         TrySendMessage(PlatformMessageProxy.GameReady);
 
         MagnetGameActionSystem.LevelStarted += OnLevelStarted;
