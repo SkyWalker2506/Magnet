@@ -35,7 +35,9 @@ namespace LevelSelection
         public void OpenLevel()
         {
             int level = levelSelectionModel.SelectedLevel;
-            if (level <= 0 || level > LevelManager.HighestUnlockedLevel) return;
+            if (level <= 0)
+                level = Mathf.Max(1, LevelManager.CurrentLevel);
+            if (level > LevelManager.HighestUnlockedLevel) return;
             LevelManager.CurrentLevel = level;
             LevelManager.ShouldLoadLevelOnBoot = true;
             SceneManager.LoadScene(1);

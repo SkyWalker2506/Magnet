@@ -80,3 +80,7 @@ crashlytics-build.properties
 /playgama-*.png
 /test-baseline-*.png
 /.playwright-mcp/
+
+# Unity Performance Testing artifacts
+/[Aa]ssets/[Rr]esources/PerformanceTestRunInfo.json*
+/[Aa]ssets/[Rr]esources/PerformanceTestRunSettings.json*
