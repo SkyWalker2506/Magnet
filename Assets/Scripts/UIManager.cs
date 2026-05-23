@@ -1,5 +1,4 @@
 using System;
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +14,6 @@ public class UIManager : Singleton<UIManager>
 
     int collectedCount;
     int totalMetals;
-    Tween progressTween;
 
     void OnEnable()
     {
@@ -35,11 +33,6 @@ public class UIManager : Singleton<UIManager>
         MagnetGameActionSystem.OnLevelFailed -= LevelFailed;
     }
 
-    private void Start()
-    {
-        RefreshProgressBar();
-    }
-
     private void SetLevel(int level)
     {
         gameObject.SetActive(true);
@@ -51,7 +44,20 @@ public class UIManager : Singleton<UIManager>
         totalMetals = MagnetismManager.Instance != null
             ? MagnetismManager.Instance.SceneMetals.Count
             : 0;
+        Debug.Log($"[UIManager] SetLevel level={level} totalMetals={totalMetals}");
         RefreshProgressBar();
+    }
+
+    private void OnMetalCollected(Metal metal)
+    {
+        collectedCount++;
+        Debug.Log($"[UIManager] OnMetalCollected collected={collectedCount}/{totalMetals}");
+        RefreshProgressBar();
+    }
+
+    private void RefreshProgressBar()
+    {
+        LevelProgressBar.value = totalMetals > 0 ? (float)collectedCount / totalMetals : 0f;
     }
 
     public void HideForMenu()
@@ -70,21 +76,6 @@ public class UIManager : Singleton<UIManager>
     private void SetTime(int time)
     {
         timeText.SetText(time.ToString());
-    }
-
-    private void OnMetalCollected(Metal metal)
-    {
-        collectedCount++;
-        RefreshProgressBar();
-    }
-
-    private void RefreshProgressBar()
-    {
-        float target = totalMetals > 0 ? (float)collectedCount / totalMetals : 0f;
-        if (progressTween != null && progressTween.IsActive()) progressTween.Kill();
-        progressTween = DOTween.To(() => LevelProgressBar.value, v => LevelProgressBar.value = v, target, 0.25f)
-            .SetEase(Ease.OutCubic)
-            .SetUpdate(true);
     }
 
     void LevelCompleted()

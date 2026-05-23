@@ -67,7 +67,7 @@ public class LevelManager : Singleton<LevelManager>
             Debug.LogError("[GameManager] Unable to load level " + levelName);
             return;
         }
-        OnLoadOperationComplete(ao);
+        ao.completed += OnLoadOperationComplete;
     }
     public void UnLoadLevel(string levelName)
     {
@@ -78,7 +78,7 @@ public class LevelManager : Singleton<LevelManager>
             Debug.LogError("[GameManager] Unable to unload level " + levelName);
             return;
         }
-        OnUnloadOperationComplete(ao);
+        ao.completed += OnUnloadOperationComplete;
     }
     
     void OnLoadOperationComplete(AsyncOperation ao)

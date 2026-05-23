@@ -186,7 +186,7 @@ MonoBehaviour:
   - Name: DropToLavaClip
     Clip: {fileID: 8300000, guid: 3fec1536a6749b9438882e8ec2cbead3, type: 3}
   - Name: MagnetPullLoop
-    Clip: {fileID: 8300000, guid: 6423712fbd8feba449880696e6020fc9, type: 3}
+    Clip: {fileID: 8300000, guid: 92b51a3b7912fce44892cb69fde69e1e, type: 3}
   MusicSource: {fileID: 8087043361657461699}
   SfxSource: {fileID: 2793953255239337047}
 --- !u!1 &7384863592388666383
