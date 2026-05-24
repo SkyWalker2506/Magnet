@@ -18,10 +18,31 @@ public class SettingsController : MonoBehaviour
     {
         this.gameObject.SetActive(false);
     }
-    
+
+    private void OnEnable()
+    {
+        SyncButtonsFromSoundManager();
+    }
+
     public void OpenSettings()
     {
         this.gameObject.SetActive(true);
+    }
+
+    void SyncButtonsFromSoundManager()
+    {
+        if (SoundManager.Instance == null) return;
+
+        bool musicOn = SoundManager.Instance.MusicSource != null && !SoundManager.Instance.MusicSource.mute;
+        if (musicOnButton != null) musicOnButton.gameObject.SetActive(musicOn);
+        if (musicOffButton != null) musicOffButton.gameObject.SetActive(!musicOn);
+
+        bool sfxOn = SoundManager.Instance.SfxSource != null && !SoundManager.Instance.SfxSource.mute;
+        if (soundOnButton != null) soundOnButton.gameObject.SetActive(sfxOn);
+        if (soundOffButton != null) soundOffButton.gameObject.SetActive(!sfxOn);
+
+        if (musicVolumeSlider != null && SoundManager.Instance.MusicSource != null)
+            musicVolumeSlider.SetValueWithoutNotify(SoundManager.Instance.MusicSource.volume);
     }
 
     public void CloseSettings()
@@ -51,32 +72,12 @@ public class SettingsController : MonoBehaviour
 
     public void MusicButtonChange(bool value)
     {
-        if(value)
-        {
-            musicOnButton.gameObject.SetActive(false);
-            musicOffButton.gameObject.SetActive(true);
-            ToggleMusic();
-        }
-        else
-        {
-            musicOnButton.gameObject.SetActive(true);
-            musicOffButton.gameObject.SetActive(false);
-            ToggleMusic();
-        }
+        ToggleMusic();
+        SyncButtonsFromSoundManager();
     }
     public void SoundButtonChange(bool value)
     {
-        if(value)
-        {
-            soundOnButton.gameObject.SetActive(false);
-            soundOffButton.gameObject.SetActive(true);
-            ToggleSfx();
-        }
-        else
-        {
-            soundOnButton.gameObject.SetActive(true);
-            soundOffButton.gameObject.SetActive(false);
-            ToggleSfx();
-        }
+        ToggleSfx();
+        SyncButtonsFromSoundManager();
     }
 }
