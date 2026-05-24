@@ -97,7 +97,16 @@ public class PlaygamaIntegration : MonoBehaviour
 
     private void OnInterstitialChanged(InterstitialState state)
     {
-        AudioListener.pause = state == InterstitialState.Opened || state == InterstitialState.Loading;
+        switch (state)
+        {
+            case InterstitialState.Opened:
+                AudioListener.pause = true;
+                break;
+            case InterstitialState.Closed:
+            case InterstitialState.Failed:
+                AudioListener.pause = false;
+                break;
+        }
     }
 #endif
 
