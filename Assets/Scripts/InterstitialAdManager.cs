@@ -29,7 +29,7 @@ public class InterstitialAdManager : MonoBehaviour
 
     private void Start()
     {
-        lastAdRealtime = Time.realtimeSinceStartup;
+        lastAdRealtime = 0f;
     }
 
     private void OnEnable()
