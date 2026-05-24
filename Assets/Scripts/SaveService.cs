@@ -44,7 +44,7 @@ public static class SaveService
                 CompletePreload();
                 return;
             }
-            Bridge.storage.Get(BuildSyncKeys(), OnCloudReturned, StorageType.PlatformInternal);
+            Bridge.storage.Get(BuildSyncKeys(), OnCloudReturned);
         }
         catch (Exception e)
         {
@@ -79,7 +79,8 @@ public static class SaveService
         try
         {
             if (Bridge.storage == null) return;
-            Bridge.storage.Set(key, value, null, StorageType.PlatformInternal);
+            Debug.Log($"[SaveService] Bridge.storage.Set {key}={value}");
+            Bridge.storage.Set(key, value);
         }
         catch (Exception e)
         {
