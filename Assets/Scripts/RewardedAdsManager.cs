@@ -23,7 +23,6 @@ public class RewardedAdsManager : MonoBehaviour
 
     private void OnEnable()
     {
-        MagnetGameActionSystem.OnLevelFailed += OnLevelFailed;
 #if UNITY_WEBGL
         try
         {
@@ -42,7 +41,6 @@ public class RewardedAdsManager : MonoBehaviour
 
     private void OnDisable()
     {
-        MagnetGameActionSystem.OnLevelFailed -= OnLevelFailed;
 #if UNITY_WEBGL
         if (!subscribedBridgeEvents) return;
         try
@@ -52,11 +50,6 @@ public class RewardedAdsManager : MonoBehaviour
         }
         catch { }
 #endif
-    }
-
-    private void OnLevelFailed()
-    {
-        RequestRewardedRetry();
     }
 
     public void RequestRewardedRetry()

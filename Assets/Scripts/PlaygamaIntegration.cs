@@ -79,12 +79,7 @@ public class PlaygamaIntegration : MonoBehaviour
 
     private void OnLevelStarted(int level) => TrySendMessage(PlatformMessageProxy.LevelStarted);
 
-    private void OnLevelCompleted()
-    {
-        TrySendMessage(PlatformMessageProxy.LevelCompleted);
-        if (LevelManager.IsInitialized && LevelManager.CurrentLevel > 1)
-            TryShowInterstitial();
-    }
+    private void OnLevelCompleted() => TrySendMessage(PlatformMessageProxy.LevelCompleted);
 
     private void OnLevelFailed() => TrySendMessage(PlatformMessageProxy.LevelFailed);
 
@@ -121,22 +116,6 @@ public class PlaygamaIntegration : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogWarning($"[Playgama] SendMessage({msg}) failed: {e.Message}");
-        }
-#endif
-    }
-
-    private static void TryShowInterstitial()
-    {
-#if UNITY_WEBGL
-        try
-        {
-            if (Bridge.advertisement == null) return;
-            if (!Bridge.advertisement.isInterstitialSupported) return;
-            Bridge.advertisement.ShowInterstitial("level_complete");
-        }
-        catch (Exception e)
-        {
-            Debug.LogWarning($"[Playgama] ShowInterstitial failed: {e.Message}");
         }
 #endif
     }
