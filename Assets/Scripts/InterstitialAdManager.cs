@@ -15,6 +15,7 @@ public class InterstitialAdManager : MonoBehaviour
     private static void Bootstrap()
     {
         if (FindFirstObjectByType<InterstitialAdManager>() != null) return;
+        Debug.Log("[InterstitialAds] Bootstrap");
         var go = new GameObject("InterstitialAdManager");
         DontDestroyOnLoad(go);
         go.AddComponent<InterstitialAdManager>();
@@ -68,8 +69,10 @@ public class InterstitialAdManager : MonoBehaviour
     private void OnLevelStarted(int level)
     {
         levelStartsSinceLastAd++;
+        float elapsed = Time.realtimeSinceStartup - lastAdRealtime;
         bool countHit = levelStartsSinceLastAd >= LevelStartThreshold;
-        bool timeHit = (Time.realtimeSinceStartup - lastAdRealtime) >= TimeThresholdSeconds;
+        bool timeHit = elapsed >= TimeThresholdSeconds;
+        Debug.Log($"[InterstitialAds] LevelStarted lvl={level} count={levelStartsSinceLastAd}/{LevelStartThreshold} elapsed={elapsed:F1}s/{TimeThresholdSeconds:F0}s");
         if (countHit || timeHit)
             FireInterstitial();
     }
