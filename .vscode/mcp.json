@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "unity-synaptic": {
+      "type": "stdio",
+      "command": "/opt/homebrew/bin/node",
+      "args": [
+        "/Users/musabkara/Documents/Unity/Magnet/Assets/Synaptic AI Pro/MCPServer/index.js"
+      ],
+      "cwd": "/Users/musabkara/Documents/Unity/Magnet/Assets/Synaptic AI Pro/MCPServer"
+    }
+  }
+}

@@ -1,126 +1,123 @@
 === BUILD SUMMARY ===
 Platform: WebGL
 Result: Succeeded
-Total Size: 52 MB (54833555 bytes)
-Time: 00:10:23.7925030
-Errors: 0  Warnings: 33
+Total Size: 38 MB (40612850 bytes)
+Time: 00:05:40.3608030
+Errors: 0  Warnings: 13
 
 === TOP 60 ASSETS BY UNCOMPRESSED PACKED SIZE ===
  Size (KB)  Type                    Asset
   16,384.1  Texture2D               Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline 210 SDF Atlas.png
    4,106.7  Material                Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline 210 SDF.asset
    4,096.1  Texture2D               Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline 72 SDF Atlas.png
-   2,750.3  Texture2D               Assets/Sprite/magnet_2.png
    2,730.8  Texture2D               Built-in Texture2D: Splash Screen Unity Logo
-   2,325.6  Texture2D               Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Sprite/Demo/Demo_Background/Background_02.png
    2,069.1  Material                Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline_Extended ASCII_120 SDF.asset
    2,048.2  Texture2D               Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline_Extended ASCII_120 SDF Atlas.png
-   1,365.5  Texture2D               Assets/Hovl Studio/Magic effects pack/Textures/MagicCircle.png
    1,091.3  AudioClip               Assets/Music Loops Mini Set/Casual & Abstract Game Loops/Casual Theme Loop #3.wav
    1,053.2  Material                Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
    1,034.7  Material                Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline 72 SDF.asset
    1,024.1  Texture2D               Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline 32 SDF Atlas.png
-     744.1  Texture2D               Assets/Sprite/fail.png
-     682.8  Texture2D               Assets/Scenes/Levels/9/Lightmap-0_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/9/Lightmap-1_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/9/Lightmap-3_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/9/Lightmap-4_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/9/Lightmap-2_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/10/Lightmap-2_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/10/Lightmap-0_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/10/Lightmap-5_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/10/Lightmap-1_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/10/Lightmap-3_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/10/Lightmap-4_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/11/Lightmap-4_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/11/Lightmap-3_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/11/Lightmap-1_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/11/Lightmap-2_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/11/Lightmap-5_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/11/Lightmap-0_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/12/Lightmap-1_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/12/Lightmap-5_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/12/Lightmap-3_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/12/Lightmap-4_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/12/Lightmap-2_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/12/Lightmap-0_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/13/Lightmap-2_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/13/Lightmap-0_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/13/Lightmap-1_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/13/Lightmap-4_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/13/Lightmap-3_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/14/Lightmap-0_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/14/Lightmap-1_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/14/Lightmap-2_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/14/Lightmap-3_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/14/Lightmap-4_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/15/Lightmap-0_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/15/Lightmap-2_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/15/Lightmap-3_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/15/Lightmap-4_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/15/Lightmap-1_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/16/Lightmap-2_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/16/Lightmap-4_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/16/Lightmap-0_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/16/Lightmap-1_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/16/Lightmap-3_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/17/Lightmap-3_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/17/Lightmap-4_comp_shadowmask.png
-     682.8  Texture2D               Assets/Scenes/Levels/17/Lightmap-2_comp_shadowmask.png
+     641.7  Shader                  Packages/com.unity.render-pipelines.universal/Shaders/SimpleLit.shader
+     432.0  Shader                  Packages/com.unity.render-pipelines.universal/Shaders/PostProcessing/UberPost.shader
+     344.5  Material                Assets/TextMesh Pro/Fonts/LiberationSans.ttf
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/circle_04.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/explosion04.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/muzzle_02.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/blackSmoke07.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/circle_03.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/scorch_01.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/muzzle_01.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/explosion08.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/muzzle_03.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/scorch_02.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/window_04.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/whitePuff08.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/explosion02.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/window_03.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/blackSmoke21.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/circle_02.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/circle_05.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/symbol_01.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/window_01.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/explosion03.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/explosion06.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/circle_01.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/window_02.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/explosion01.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/scorch_03.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/explosion07.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/muzzle_05.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/muzzle_04.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/symbol_02.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/scratch_01.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/explosion00.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/explosion05.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/fart00.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/smoke_10.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/magic_05.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/magic_01.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/fart06.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/star_07.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/slash_01.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/flare_01.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/spark_04.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/smoke_04.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/flash03.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/slash_03.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/smoke_07.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/spark_07.png
+     341.5  Texture2D               Assets/Synaptic AI Pro/Resources/VFX/Textures/flash06.png
 
 === AGGREGATED BY TOP-LEVEL FOLDER ===
-     211 MB    534 files  Assets/Scenes
-      33 MB     23 files  Assets/Layer Lab
-      13 MB     38 files  Assets/Sprite
+      42 MB    189 files  Assets/Synaptic AI Pro
+      31 MB     23 files  Assets/Layer Lab
+       9 MB     38 files  Assets/Sprite
        1 MB     22 files  Assets/TextMesh Pro
-       1 MB      8 files  Assets/Hovl Studio
        1 MB      1 files  Assets/Music Loops Mini Set
-       0 MB    777 files  Assets/Feel
-       0 MB      1 files  Assets/UI Toolkit
+       0 MB      8 files  Assets/Hovl Studio
        0 MB      4 files  Assets/Audio
-       0 MB     15 files  Assets/Fantasy UI
        0 MB      1 files  Assets/VFX
-       0 MB     16 files  Assets/Prefabs
+       0 MB     15 files  Assets/Fantasy UI
+       0 MB     15 files  Assets/Prefabs
        0 MB     12 files  Assets/Materials
+       0 MB      1 files  Assets/Interface And Item Sounds
        0 MB      1 files  Assets/Clean Settings UI
        0 MB      2 files  Assets/Shaders
+       0 MB      4 files  Assets/Resources
        0 MB      3 files  Assets/Animations
-       0 MB     45 files  Assets/Scripts
-       0 MB      3 files  Assets/Resources
+       0 MB     46 files  Assets/Scripts
        0 MB      1 files  Assets/UniversalRenderPipelineGlobalSettings.asset
        0 MB      1 files  Assets/DefaultVolumeProfile.asset
-       0 MB      3 files  Assets/UI
        0 MB      3 files  Assets/URPL
        0 MB     11 files  Assets/vInspector
        0 MB      8 files  Assets/Plugins
-       0 MB      1 files  Assets/Data
        0 MB      7 files  Assets/vHierarchy
+       0 MB      1 files  Assets/Data
        0 MB      5 files  Assets/vFolders
        0 MB      3 files  Assets/vFavorites
        0 MB      3 files  Assets/vTabs
        0 MB      3 files  Assets/vRuler
        0 MB      2 files  Assets/ColorPaletteTool
+       0 MB      5 files  Assets/Scenes
        0 MB      2 files  Assets/CrystalFramework
        0 MB      1 files  Assets/Lava_Flowing_Shader
        0 MB      1 files  Assets/QuitController.cs
        0 MB      1 files  Assets/NoFriction.physicMaterial
 
 === AGGREGATED BY ASSET TYPE ===
-     255 MB    602 files  Texture2D
-      10 MB     35 files  Material
-       3 MB     30 files  Cubemap
-       1 MB     57 files  Shader
-       1 MB      5 files  AudioClip
+      82 MB    282 files  Texture2D
+       9 MB     32 files  Material
+       1 MB     58 files  Shader
+       1 MB      6 files  AudioClip
        0 MB      8 files  ComputeShader
-       0 MB   2192 files  MonoScript
-       0 MB     47 files  GameObject
-       0 MB     15 files  MonoBehaviour
+       0 MB     44 files  GameObject
+       0 MB   1474 files  MonoScript
+       0 MB      6 files  TextAsset
        0 MB      1 files  PreloadData
        0 MB      2 files  Mesh
-       0 MB      7 files  TextAsset
+       0 MB     12 files  MonoBehaviour
        0 MB      2 files  AnimationClip
-       0 MB     30 files  LightProbes
        0 MB      1 files  AnimatorController
        0 MB      1 files  Sprite
+       0 MB      5 files  LightProbes
        0 MB      1 files  PhysicsMaterial
-       0 MB      1 files  LightingSettings

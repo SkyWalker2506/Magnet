@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,7 @@ namespace EditorTools
         [MenuItem("Tools/Build/WebGL")]
         public static void BuildWebGL()
         {
+            ApplyWebGLSizeOptimizations();
             var buildPath = GetArgumentValue("-buildPath") ?? DefaultBuildPath;
             var scenes = EditorBuildSettings.scenes
                 .Where(scene => scene.enabled)
@@ -31,12 +33,18 @@ namespace EditorTools
             PrepareProjectForWebGL(scenes);
             Directory.CreateDirectory(buildPath);
 
+            var cleanCache = GetArgumentValue("-cleanCache") != null
+                || System.IO.File.Exists("Builds/WebGL/.force-clean")
+                || PlayerSettings.GetIl2CppCompilerConfiguration(NamedBuildTarget.WebGL) == Il2CppCompilerConfiguration.Master;
+            var opts = cleanCache ? BuildOptions.CleanBuildCache : BuildOptions.None;
+            Debug.Log($"[WebGL] BuildOptions={opts} (cleanCache={cleanCache})");
+
             var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
             {
                 scenes = scenes,
                 locationPathName = buildPath,
                 target = BuildTarget.WebGL,
-                options = BuildOptions.None
+                options = opts
             });
 
             if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
@@ -56,8 +64,25 @@ namespace EditorTools
             PrepareProjectForWebGL(scenes);
         }
 
+        private static void ApplyWebGLSizeOptimizations()
+        {
+            PlayerSettings.SplashScreen.show = false;
+            PlayerSettings.SplashScreen.showUnityLogo = false;
+            var nbt = NamedBuildTarget.WebGL;
+            PlayerSettings.SetManagedStrippingLevel(nbt, ManagedStrippingLevel.High);
+            PlayerSettings.SetIl2CppCompilerConfiguration(nbt, Il2CppCompilerConfiguration.Master);
+            PlayerSettings.SetIl2CppCodeGeneration(nbt, Il2CppCodeGeneration.OptimizeSize);
+            AssetDatabase.SaveAssets();
+            Debug.Log($"[WebGL] Size opts applied — splash={PlayerSettings.SplashScreen.show}, strip={PlayerSettings.GetManagedStrippingLevel(nbt)}, il2cpp={PlayerSettings.GetIl2CppCompilerConfiguration(nbt)}, codegen={PlayerSettings.GetIl2CppCodeGeneration(nbt)}");
+        }
+
         private static void PrepareProjectForWebGL(string[] scenes)
         {
+            if (EditorApplication.isPlaying)
+            {
+                EditorApplication.isPlaying = false;
+                throw new InvalidOperationException("Stopped Play Mode. Re-run build after the Editor exits Play Mode (takes a moment).");
+            }
             if (!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
             {
                 throw new InvalidOperationException("WebGL preparation was cancelled because open scene changes were not saved.");
