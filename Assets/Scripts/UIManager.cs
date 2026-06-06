@@ -101,5 +101,6 @@ public class UIManager : Singleton<UIManager>
     void LevelFailed()
     {
         FailedUI.SetActive(true);
+        Playgama.TemplateTools.PlaygamaMonetization.GameOver();
     }
 }
