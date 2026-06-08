@@ -10,7 +10,14 @@
         "useBuiltInErrorPopup": true,
         "backfillId": ""
     },
-    "payments": [],
+    "payments": [
+        {
+            "commonId": "remove_ads",
+            "id": "remove_ads",
+            "title": "Remove Ads",
+            "type": "nonconsumable"
+        }
+    ],
     "leaderboards": [],
     "sendAnalyticsEvents": true
 }
